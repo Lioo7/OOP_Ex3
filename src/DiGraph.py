@@ -21,21 +21,40 @@ class DiGraph(GraphInterface):
         return self.nodes
 
     def all_in_edges_of_node(self, id1: int) -> dict:
-        pass
+        """
+
+        :param id1:
+        :return:
+        """
+        temp = {}
+        if id1 in self.nodes:
+            return self.nodes.get(id1)
+        else:
+            return temp
 
     def all_out_edges_of_node(self, id1: int) -> dict:
         pass
 
     def get_mc(self) -> int:
-        pass
+        return self.mc
 
     def add_edge(self, id1: int, id2: int, weight: float) -> bool:
         pass
 
     def add_node(self, node_id: int, pos: tuple = None) -> bool:
-        pass
+        if node_id in self.nodes.keys():
+            return False
+        else:
+            # self.nodes[node_id] = NodeData(node_id, pos)
+            new_node = NodeData(node_id, pos)
+            temp_dic = {str(node_id): new_node}
+            self.nodes.update(temp_dic)
+            self.nodes_Neighbors[id] = {}
+            self.mc += 1
+            return True
 
     def remove_node(self, node_id: int) -> bool:
+
         pass
 
     def remove_edge(self, node_id1: int, node_id2: int) -> bool:

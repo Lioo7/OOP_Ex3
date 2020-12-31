@@ -1,8 +1,8 @@
 def NodeData():
-    def __init__(self):
-        self.key = 0
+    def __init__(self, key: int, pos: tuple):
+        self.key = key
         self.weight = 0
-        self.pos = (0, 0, 0)
+        self.pos = pos
         self.tag = 0
         self.info = None
 
