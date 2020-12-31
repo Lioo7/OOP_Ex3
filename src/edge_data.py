@@ -1,4 +1,4 @@
-def EdgeData():
+class EdgeData:
     def __init__(self, src, dest, weight):
         self.src = src
         self.dest = dest

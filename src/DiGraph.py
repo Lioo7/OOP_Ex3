@@ -1,5 +1,5 @@
 from src.GraphInterface import GraphInterface
-from src.NodeData import NodeData
+from src.node_data import NodeData
 
 
 class DiGraph(GraphInterface):
@@ -45,10 +45,7 @@ class DiGraph(GraphInterface):
         if node_id in self.nodes.keys():
             return False
         else:
-            # self.nodes[node_id] = NodeData(node_id, pos)
-            new_node = NodeData(node_id, pos)
-            temp_dic = {str(node_id): new_node}
-            self.nodes.update(temp_dic)
+            self.nodes[node_id] = NodeData(node_id, pos)
             self.nodes_Neighbors[id] = {}
             self.mc += 1
             return True

@@ -1,4 +1,4 @@
-def NodeData():
+class NodeData:
     def __init__(self, key: int, pos: tuple):
         self.key = key
         self.weight = 0
