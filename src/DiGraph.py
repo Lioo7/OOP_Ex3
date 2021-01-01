@@ -46,10 +46,20 @@ def get_mc(self) -> int:
 
 
 def add_edge(self, id1: int, id2: int, weight: float) -> bool:
+    # Checks if the nodes are not equal and if the wight is valid
     if id1 != id2 and weight > 0:
+        # Checks if the nodes exist in the nodes dictionary
         if id1 and id2 in self.nodes.keys():
-            edge = EdgeData(id1, id2, weight)
-            self.edges
+            # Checks if the edge does not exist already
+            if id1 and id2 not in self.edges:
+                # Creates a new edge and add it to the edge dictionary
+                edge = EdgeData(id1, id2, weight)
+                self.edges[id1][id2] = edge
+                # Increments the count_edges by one
+                self.count_edges += 1
+                # Increments the mc by one
+                self.mc += 1
+                return True
 
 
 def add_node(self, node_id: int, pos: tuple = None) -> bool:
