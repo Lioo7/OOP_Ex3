@@ -25,16 +25,7 @@ def get_all_v(self) -> dict:
 
 
 def all_in_edges_of_node(self, id1: int) -> dict:
-    """
-
-    :param id1:
-    :return:
-    """
-    temp = {}
-    if id1 in self.nodes:
-        return self.nodes.get(id1)
-    else:
-        return temp
+    for node in self.
 
 
 def all_out_edges_of_node(self, id1: int) -> dict:

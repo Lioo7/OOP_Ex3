@@ -1,9 +1,5 @@
-from abc import abstractmethod
-
-
 class GraphInterface:
     """This abstract class represents an interface of a graph."""
-    @abstractmethod
     def v_size(self) -> int:
         """
         Returns the number of vertices in this graph
@@ -11,7 +7,6 @@ class GraphInterface:
         """
         raise NotImplementedError
 
-    @abstractmethod
     def e_size(self) -> int:
         """
         Returns the number of edges in this graph
@@ -19,24 +14,20 @@ class GraphInterface:
         """
         raise NotImplementedError
 
-    @abstractmethod
     def get_all_v(self) -> dict:
         """return a dictionary of all the nodes in the Graph, each node is represented using apair  (key, node_data)
         """
 
-    @abstractmethod
     def all_in_edges_of_node(self, id1: int) -> dict:
         """return a dictionary of all the nodes connected to (into) node_id ,
         each node is represented using a pair (key, weight)
          """
 
-    @abstractmethod
     def all_out_edges_of_node(self, id1: int) -> dict:
         """return a dictionary of all the nodes connected from node_id , each node is represented using a pair (key,
         weight)
         """
 
-    @abstractmethod
     def get_mc(self) -> int:
         """
         Returns the current version of this graph,
@@ -45,7 +36,6 @@ class GraphInterface:
         """
         raise NotImplementedError
 
-    @abstractmethod
     def add_edge(self, id1: int, id2: int, weight: float) -> bool:
         """
         Adds an edge to the graph.
@@ -57,7 +47,6 @@ class GraphInterface:
         """
         raise NotImplementedError
 
-    @abstractmethod
     def add_node(self, node_id: int, pos: tuple = None) -> bool:
         """
         Adds a node to the graph.
@@ -68,7 +57,6 @@ class GraphInterface:
         """
         raise NotImplementedError
 
-    @abstractmethod
     def remove_node(self, node_id: int) -> bool:
         """
         Removes a node from the graph.
@@ -78,7 +66,6 @@ class GraphInterface:
         """
         raise NotImplementedError
 
-    @abstractmethod
     def remove_edge(self, node_id1: int, node_id2: int) -> bool:
         """
         Removes an edge from the graph.
