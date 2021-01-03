@@ -7,7 +7,6 @@ class DiGraph(GraphInterface):
 
     def __init__(self):
         self.nodes = {}
-        self.edges = {}
         self.Neighbors_in = {}
         self.Neighbors_out = {}
         self.count_edges = 0
@@ -101,10 +100,13 @@ class DiGraph(GraphInterface):
              @return: True if the node was removed successfully, False o.w.
              Note: if the node id does not exists the function will do nothing
              """
+        # Check if the node exist
         if node_id in self.nodes:
+            # Go through the list of all the nodes that have an edge to node_id
             for i in self.Neighbors_in.get(node_id):
                 del self.Neighbors_in[i][node_id]
                 self.count_edges -= 1
+            # Go through the list of all the nodes that have an edge from node_id
             for i in self.Neighbors_out.get(node_id):
                 del self.Neighbors_out[i][node_id]
                 self.count_edges -= 1
@@ -124,4 +126,17 @@ class DiGraph(GraphInterface):
          @return: True if the edge was removed successfully, False o.w.
          Note: If such an edge does not exists the function will do nothing
          """
-        pass
+        # Check if the nodes exist
+        if node_id1 in self.nodes and node_id2 in self.nodes:
+            # Check if the edge exist
+            if node_id2 in self.Neighbors_out[node_id1]:
+                del self.Neighbors_in[node_id2][node_id1]
+                del self.Neighbors_out[node_id1][node_id2]
+                self.count_edges -= 1
+                self.mc += 1
+                return True
+            return False
+        return False
+
+
+
