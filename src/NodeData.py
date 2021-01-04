@@ -1,7 +1,7 @@
 class NodeData:
     key_id = 0
 
-    def __init__(self, key: int = key_id, weight: float = 0.0, pos: tuple = None, tag: int = 0, info: str = " "):
+    def __init__(self, key: int = key_id, weight: float = 0.0, pos: tuple = None, tag: int = 0, info: str = "a"):
         self.key_id += 1
         self.key = key
         self.weight = weight
