@@ -53,7 +53,7 @@ class TestDiGraph(unittest.TestCase):
         # Expected edges size increase by 1
         """
         g = set_small_graph()
-        g.add_edge(0, 1, 5.5)
+        g.add_edge(1, 2, 5.5)
         self.assertEqual(1, g.count_edges)
 
 

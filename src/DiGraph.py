@@ -58,17 +58,18 @@ class DiGraph(GraphInterface):
         @return: True if the edge was added successfully, False o.w.
         Note: If the edge already exists or one of the nodes dose not exists the functions will do nothing
         """
+        ans = False
         # Checks if the ids exist and are not equal to each other
         if id1 in self.nodes and id2 in self.nodes and id1 != id2:
             # Checks that the edge does not already exist
-            if id1 not in self.Neighbors_in[id2] and weight != self.Neighbors_out[id1][id2]:
+            if id1 not in self.Neighbors_in[id2] and weight > 0:
                 self.Neighbors_out[id1][id2] = weight
                 self.Neighbors_in[id1][id2] = weight
                 self.count_edges += 1
                 self.mc += 1
-                return True
-            return False
-        return False
+                ans = True
+
+        return ans
 
     def add_node(self, node_id: int, pos: tuple = None) -> bool:
         """
