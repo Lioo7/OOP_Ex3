@@ -64,7 +64,7 @@ class DiGraph(GraphInterface):
             # Checks that the edge does not already exist
             if id1 not in self.Neighbors_in[id2] and weight > 0:
                 self.Neighbors_out[id1][id2] = weight
-                self.Neighbors_in[id1][id2] = weight
+                self.Neighbors_in[id2][id1] = weight
                 self.count_edges += 1
                 self.mc += 1
                 ans = True
