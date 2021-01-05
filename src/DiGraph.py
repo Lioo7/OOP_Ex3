@@ -85,10 +85,22 @@ class DiGraph(GraphInterface):
             # Creates a new node and adds it to the nodes dictionary
             self.nodes[node_id] = NodeData(node_id, pos)
             # Creates an empty inner dictionary in edges
-            self.edges.setdefault(node_id, {})
+            # self.edges.setdefault(node_id, {})
+            # Creates an empty inner dictionary in Neighbors_in
+            self.Neighbors_in[node_id] = {}
+            # Creates an empty inner dictionary in Neighbors_out
+            self.Neighbors_out[node_id] = {}
             # Increments the mc by one
             self.mc += 1
         return True
+
+    """"
+    This function gets a node's key and returns the NodeData
+    """
+    def get_node(self, node_id: int) -> NodeData:
+        if node_id in self.nodes.keys():
+            return self.nodes.get(node_id)
+        else: return None
 
     def remove_node(self, node_id: int) -> bool:
         """
