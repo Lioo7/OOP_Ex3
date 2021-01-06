@@ -1,5 +1,5 @@
 class NodeData:
-    key_id = 0
+    key_id = 0 # TODO: Is it necessary?
 
     def __init__(self, key: int = key_id, weight: float = 0.0, pos: tuple = None, tag: int = 0, info: str = "a"):
         self.key_id += 1
