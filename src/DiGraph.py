@@ -98,10 +98,12 @@ class DiGraph(GraphInterface):
     """"
     This function gets a node's key and returns the NodeData
     """
+
     def get_node(self, node_id: int) -> NodeData:
         if node_id in self.nodes.keys():
             return self.nodes.get(node_id)
-        else: return None
+        else:
+            return None
 
     def remove_node(self, node_id: int) -> bool:
         """
@@ -115,10 +117,12 @@ class DiGraph(GraphInterface):
             # Go through the list of all the nodes that have an edge to node_id
             for i in self.Neighbors_in.get(node_id):
                 del self.Neighbors_in[i][node_id]
+                self.mc += 1
                 self.count_edges -= 1
             # Go through the list of all the nodes that have an edge from node_id
             for i in self.Neighbors_out.get(node_id):
                 del self.Neighbors_out[i][node_id]
+                self.mc += 1
                 self.count_edges -= 1
 
             del self.nodes[node_id]
