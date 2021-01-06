@@ -4,11 +4,11 @@ import random
 import time
 
 
-# ================================================================================
-#                                   Set Graphs
-# ================================================================================
+# ===============================================================================================================
+#                                               Graph Generator
+# ===============================================================================================================
 
-def set_random_graph():
+def generate_random_graph():
     # Creates a graph with 1M nodes(1-1M) and 10M random edges with random weight
     g = DiGraph()
     for node in range(1, 1000001):
@@ -21,7 +21,7 @@ def set_random_graph():
     return g
 
 
-def set_million_graph():
+def generate_million_graph():
     # Creates a graph with 1M nodes(1-1M) and 1M edges
     g = DiGraph()
     for node in range(1, 1000001):
@@ -35,7 +35,7 @@ def set_million_graph():
     return g
 
 
-def set_small_graph():
+def generate_small_graph():
     # Creates a graph with 3 nodes(1-3) and zero edges
     g = DiGraph()
     for node in range(1, 4):
@@ -43,7 +43,7 @@ def set_small_graph():
     return g
 
 
-def set_connected_graph():
+def generate_connected_graph():
     # Creates a graph with 10 nodes and 9 edges
     g = DiGraph()
     for node in range(1, 11):
@@ -54,16 +54,16 @@ def set_connected_graph():
     return g
 
 
-# ================================================================================
-#                               Test SetGraphs
-# ================================================================================
+# ===============================================================================================================
+#                                            Test Graph Generator
+# ===============================================================================================================
 
-class TestSetGraphs(unittest.TestCase):
+class TestDiGraph(unittest.TestCase):
 
     def test_run_time_random_graph(self):  # 50 Seconds
         # Test the time that takes to create a random graph with 1M nodes and 10M random edges
         start = time.time()
-        g = set_random_graph()
+        g = generate_random_graph()
         end = time.time()
         print("\nrandom_graph")
         print("Run time:", end - start)
@@ -73,19 +73,16 @@ class TestSetGraphs(unittest.TestCase):
     def test_run_time_million_graph(self):  # 3 Seconds
         # Test the time that takes to create a graph with 1M nodes and 1M edges
         start = time.time()
-        g = set_million_graph()
+        g = generate_million_graph()
         end = time.time()
         print("\nmillion_graph")
         print("Run time:", end - start)
         print("Number of nodes:", g.v_size())
         print("Number of edges:", g.e_size(), "\n")
 
-
-# ================================================================================
-#                             Test DiGraph functions
-# ================================================================================
-
-class TestDiGraph(unittest.TestCase):
+    # ===============================================================================================================
+    #                                               Test DiGraph Functions
+    # ===============================================================================================================
 
     def setUp(self) -> None:
         # Creates an empty graph
@@ -115,7 +112,7 @@ class TestDiGraph(unittest.TestCase):
         Test remove a new node from the graph
         Expected node 1 not to be in nodes.keys
         """
-        g = set_small_graph()
+        g = generate_small_graph()
 
         g.remove_node(1)
         print("\nFirst test: self.g.remove_node(1)")
@@ -136,7 +133,7 @@ class TestDiGraph(unittest.TestCase):
         Test adding a new edge to the graph
         Expected edges size increase by 1
         """
-        g = set_small_graph()
+        g = generate_small_graph()
         g.add_edge(1, 2, 5.5)
         print("First test: g.add_edge(1, 2, 5.5)")
         print("Edges OUT: ", g.Neighbors_out)
@@ -178,7 +175,7 @@ class TestDiGraph(unittest.TestCase):
         Test removing an edge from the graph
         Expected edges size increase by 1
         """
-        g = set_connected_graph()
+        g = generate_connected_graph()
         g.remove_edge(1, 2)
         print("First test: g.remove_edge(1, 2)")
         print("Edges OUT: ", g.Neighbors_out)
@@ -210,7 +207,7 @@ class TestDiGraph(unittest.TestCase):
         Test returns all the edges that connect to the given node
         Expected: {4: 9}
         """
-        g = set_connected_graph()
+        g = generate_connected_graph()
         expected = {4: 9}
         print("Edges IN: ", g.all_in_edges_of_node(5))
         self.assertEqual(expected, g.all_in_edges_of_node(5))
@@ -219,7 +216,7 @@ class TestDiGraph(unittest.TestCase):
         Test returns all the edges that connect to the given node that does not exist
         Expected: None
         """
-        g = set_connected_graph()
+        g = generate_connected_graph()
         expected = None
         print("Edges IN: ", g.all_in_edges_of_node(100))
         self.assertEqual(expected, g.all_in_edges_of_node(100))
@@ -229,7 +226,7 @@ class TestDiGraph(unittest.TestCase):
         Test returns all the edges that go out from the given node
         Expected: {6: 11}
         """
-        g = set_connected_graph()
+        g = generate_connected_graph()
         expected = {6: 11}
         print("Edges OUT: ", g.all_out_edges_of_node(5))
         self.assertEqual(expected, g.all_out_edges_of_node(5))
@@ -238,7 +235,7 @@ class TestDiGraph(unittest.TestCase):
         Test returns all the edges that connect to the given node that does not exist
         Expected: None
         """
-        g = set_connected_graph()
+        g = generate_connected_graph()
         expected = None
         print("Edges IN: ", g.all_out_edges_of_node(100))
         self.assertEqual(expected, g.all_out_edges_of_node(100))
@@ -305,10 +302,9 @@ class TestDiGraph(unittest.TestCase):
         self.assertEqual(0, self.g.e_size())
 
 
-# ================================================================================
-#                            Main - run all the tests
-# ================================================================================
+# ===============================================================================================================
+#                                           Main -  runs all the tests
+# ===============================================================================================================
 
 if __name__ == '__main__':
     unittest.main()
-

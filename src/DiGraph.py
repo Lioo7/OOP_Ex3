@@ -85,8 +85,6 @@ class DiGraph(GraphInterface):
         else:
             # Creates a new node and adds it to the nodes dictionary
             self.nodes[node_id] = NodeData(node_id, pos)
-            # Creates an empty inner dictionary in edges
-            # self.edges.setdefault(node_id, {})
             # Creates an empty inner dictionary in Neighbors_in
             self.Neighbors_in[node_id] = {}
             # Creates an empty inner dictionary in Neighbors_out
