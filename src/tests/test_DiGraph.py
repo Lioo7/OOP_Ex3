@@ -3,7 +3,7 @@ from DiGraph import DiGraph
 
 
 def set_small_graph():
-    # Creates a graph with 3 nodes(1-3)
+    # Creates a graph with 3 nodes(1-3) and zero edges
     g = DiGraph()
     for node in range(1, 4):
         g.add_node(node)
@@ -207,12 +207,20 @@ class TestDiGraph(unittest.TestCase):
         self.assertTrue(self.g.v_size() == 2)
 
     def test_get_mc(self):
+        """
+        Test the number of changes in the graph
+        Expected: 3
+        """
         self.g.add_node(1)  # +1
         self.g.add_node(2)  # +1
         self.g.add_node(3)  # +1
         self.g.add_node(3)  # +0
         self.assertEqual(3, self.g.get_mc())
         self.assertEqual(3, self.g.v_size())
+        """
+        Test the number of changes in the graph
+        Expected: 8
+        """
         self.g.add_edge(1, 2, 55.5)  # +1
         self.g.add_edge(1, 3, 44.4)  # +1
         self.g.add_edge(2, 1, 77.7)  # +1
@@ -222,6 +230,10 @@ class TestDiGraph(unittest.TestCase):
         self.assertEqual(8, self.g.get_mc())
         self.assertEqual(3, self.g.v_size())
         self.assertEqual(5, self.g.e_size())
+        """
+        Test the number of changes in the graph
+        Expected: 14
+        """
         self.g.remove_edge(2, 3)  # +1
         self.g.remove_node(1)  # +5
         self.assertEqual(14, self.g.get_mc())
