@@ -82,7 +82,7 @@ class TestSetGraphs(unittest.TestCase):
 
 
 # ================================================================================
-#                               Test DiGraph functions
+#                             Test DiGraph functions
 # ================================================================================
 
 class TestDiGraph(unittest.TestCase):
