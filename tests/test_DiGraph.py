@@ -1,5 +1,34 @@
 import unittest
 from DiGraph import DiGraph
+import random
+import time
+
+
+def set_random_graph():
+    # Creates a graph with 1M nodes(1-1M) and 10M random edges with random weight
+    g = DiGraph()
+    for node in range(1, 1000001):
+        g.add_node(node)
+    while g.e_size() < 10000000:
+        node1 = random.randint(1, 1000000)
+        node2 = random.randint(1, 1000000)
+        weight = random.uniform(1, 1000000)
+        g.add_edge(node1, node2, weight)
+    return g
+
+
+def set_million_graph():
+    # Creates a graph with 1M nodes(1-1M) and 1M edges
+    g = DiGraph()
+    for node in range(1, 1000001):
+        g.add_node(node)
+    for node in range(1, 1000001):
+        node1 = node
+        node2 = node + 1
+        weight = node1 + node2
+        g.add_edge(node1, node2, weight)
+    g.add_edge(100000, 1, 10.5)
+    return g
 
 
 def set_small_graph():
@@ -239,6 +268,26 @@ class TestDiGraph(unittest.TestCase):
         self.assertEqual(14, self.g.get_mc())
         self.assertEqual(2, self.g.v_size())
         self.assertEqual(0, self.g.e_size())
+
+    def test_run_time_random_graph(self):  # 50 Seconds
+        # Test the time that takes to create a random graph with 1M nodes and 10M random edges
+        start = time.time()
+        g = set_random_graph()
+        end = time.time()
+        print("\nrandom_graph")
+        print("Run time:", end - start)
+        print("Number of nodes:", g.v_size())
+        print("Number of edges:", g.e_size(), "\n")
+
+    def test_run_time_million_graph(self):  # 3 Seconds
+        # Test the time that takes to create a graph with 1M nodes and 1M edges
+        start = time.time()
+        g = set_million_graph()
+        end = time.time()
+        print("\nmillion_graph")
+        print("Run time:", end - start)
+        print("Number of nodes:", g.v_size())
+        print("Number of edges:", g.e_size(), "\n")
 
 
 if __name__ == '__main__':
