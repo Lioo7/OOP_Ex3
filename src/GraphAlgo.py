@@ -77,22 +77,34 @@ class GraphAlgo(GraphAlgoInterface):
         @param id1: The start node id
         @param id2: The end node id
         @return: The distance of the path, the path as a list
-        Example:
-#      >>> from GraphAlgo import GraphAlgo
-#       >>> g_algo = GraphAlgo()
-#        >>> g_algo.addNode(0)
-#        >>> g_algo.addNode(1)
-#        >>> g_algo.addNode(2)
-#        >>> g_algo.addEdge(0,1,1)
-#        >>> g_algo.addEdge(1,2,4)
-#        >>> g_algo.shortestPath(0,1)
-#        (1, [0, 1])
-#        >>> g_algo.shortestPath(0,2)
-#        (5, [0, 1, 2])
-        More info:
-        https://en.wikipedia.org/wiki/Dijkstra's_algorithm
         """
-        raise NotImplementedError
+        # Creates an empty list which is used to contain the path
+        path = []
+
+        if id1 == id2:
+            return 0, path
+
+        """
+        Calls the dijkstra method to check if there exists a pathway between both of the given nodes.
+        If the dijkstra function returned a positive number, then adds all the numbers in the info of
+        the destination node to the list (by calling isNumeric method).
+        Then adds the destination node to the list and returns the path.
+        """
+        distance = self.shortest_path_distance(id1, id2)
+        if distance > -1:
+            destination = NodeData(id2)
+            string = destination.get_info()
+            arr = string.split("-")
+            for temp in arr:
+                if self.is_numeric(temp):
+                    key = int(temp)
+                    path.append(NodeData(key))
+
+            path.append(destination)
+            return distance, path
+
+        return -1, None
+
 
     """
     def get_transpose(self):
@@ -156,7 +168,7 @@ class GraphAlgo(GraphAlgoInterface):
         """
         raise NotImplementedError
 
-    # HELPFUL FUNCTIONS #
+    # ======HELPFUL FUNCTIONS====== #
 
     # Creates a set which contains all the visited nodes.
     visited = ()
@@ -205,3 +217,45 @@ class GraphAlgo(GraphAlgoInterface):
                             temp.set_tag(distance)
                             temp.set_info(current.get_info() + "-" + current.get_key() + "-")
                             pq.put(temp)
+
+    def shortest_path_distance(self, id1: int, id2: int) -> float:
+        """
+        The method returns the shortest distance between two given nodes.
+        :param id1: start node.
+        :param id2: end (target) node.
+        :return: the length of the shortest path between src to dest, if no such path --> returns -1.
+        """
+        # Checks if both of the keys exist in the graph
+        if id1 not in self.graph.get_all_v().keys() or id2 not in self.graph.get_all_v().keys():
+            return -1
+
+        # Checks if both of the keys are equal
+        if id1 == id2:
+            return 0
+
+        source = NodeData(id1)
+        destination = NodeData(id2)
+        infinity = float('inf')
+
+        # Calls dijkstra function
+        self.dijkstra(id1)
+
+        # returns the tag of the destination only if its distance is lower than infinity
+        if destination.get_tag() < infinity:
+            return destination.get_tag()
+        else:
+            return -1
+
+    @staticmethod
+    def is_numeric(string):
+        """
+        The method gets a string and checks if its contains a number
+        :param string: a string
+        :return: true id the string contains a number
+        """
+        try:
+            int(string)
+            return True
+        except ValueError:
+            return False
+
