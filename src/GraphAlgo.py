@@ -183,7 +183,7 @@ class GraphAlgo(GraphAlgoInterface):
         # Creates a priority queue which will contain the nodes that need to traverse.
         # The priority queue ranks the nodes by their tag values from the greater to the lesser.
         pq = PriorityQueue(maxsize=self.graph.v_size())
-        pq.add((src.get_tag(), src))
+        pq.put((src.get_tag(), src))
 
         """
         While the p.queue is not empty, the algorithm takes the first node (if is not visited yet)
