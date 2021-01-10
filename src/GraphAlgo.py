@@ -201,9 +201,9 @@ class GraphAlgo(GraphAlgoInterface):
         pq.put((src.get_tag(), src))
 
         """
-        While the p.queue is not empty, the algorithm takes the first node (if is not visited yet)
-        marks it and traverses all its neighbors. If this neighbor is not yet visited,
-        it adds to the p.queue and calculates its distance from the source.
+        While the p.queue is not empty, the algorithm takes the first node marks it and traverses
+        all its neighbors(all the destinations of the node).
+        If this neighbor is not yet visited it calculates its distance from the source.
         If its distance is smaller than its tag value, then sets its tag to be distance
         and set its info to contain the path from the source till this node. Then adds this node to the p.queue.
         After the algorithm finishes gaining with all the neighbors, it continues to the next node in the p.queue.
@@ -218,7 +218,7 @@ class GraphAlgo(GraphAlgoInterface):
                 for neighbor in neighbors:
                     edge_weight = self.graph.all_out_edges_of_node(curr_node.get_key()[neighbor])
                     distance = curr_node.get_tag() + edge_weight
-                    if curr_weight + distance < NodeData(neighbor).get_weight():
+                    if distance < NodeData(neighbor).get_weight():
                         nei = NodeData(neighbor)
                         nei.set_weight(curr_weight + distance)
                         key = str(curr_node.get_key())
