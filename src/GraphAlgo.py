@@ -94,7 +94,7 @@ class GraphAlgo(GraphAlgoInterface):
         if distance > -1:
             destination = NodeData(id2)
             string = destination.get_info()
-            arr = string.split("-")
+            arr = string.split("->")
             for temp in arr:
                 if self.is_numeric(temp):
                     key = int(temp)
@@ -104,7 +104,6 @@ class GraphAlgo(GraphAlgoInterface):
             return distance, path
 
         return -1, None
-
 
     """
     def get_transpose(self):
@@ -170,27 +169,31 @@ class GraphAlgo(GraphAlgoInterface):
 
     # ======HELPFUL FUNCTIONS====== #
 
-    # Creates a set which contains all the visited nodes.
-    visited = ()
+    def clear(self):
+        """
+        Clears the graph  and initializes all the nodes in the graph to their default values.
+        :return: None
+        """
+        for key in self.graph.get_all_v().keys():
+            NodeData(key).set_info(None)
+            NodeData(key).set_tag(0)
+            NodeData(key).set_weight(float('inf'))
 
-    def dijkstra(self, src, visited):
+    def dijkstra(self, source):
         """
         The Dijkstra's algorithm is an algorithm for finding the shortest paths between nodes in a graph.
         For a given source node in the graph, the algorithm finds the shortest path between that node and every other.
-        :param src: the source node
-        :param visited: the set of visited nodes
+        :param source: the source node
         :return: None
         """
 
-        # Clears the visited set and initializes all to nodes in the graph to their default values,
-        # except the tag of the source, which gets the value 0.
-        visited.clear()
+        # Clears the graph
+        self.clear()
 
-        for key in self.graph.get_all_v().keys():
-            NodeData(key).set_info(None)
-            NodeData(key).set_tag(float('inf'))
-
+        # Sets the source node values to zero
+        src = NodeData(source)
         src.set_tag(0)
+        src.set_weight(0)
 
         # Creates a priority queue which will contain the nodes that need to traverse.
         # The priority queue ranks the nodes by their tag values from the greater to the lesser.
@@ -206,17 +209,24 @@ class GraphAlgo(GraphAlgoInterface):
         After the algorithm finishes gaining with all the neighbors, it continues to the next node in the p.queue.
         """
         while pq.not_empty:
-            current = pq.get()[1]
-            if current not in visited:
-                visited.add(current)
-                for temp in self.graph.all_out_edges_of_node(current.get_key()):
-                    if temp not in visited:
-                        weight = self.graph.all_out_edges_of_node(current.get_key.get(temp))
-                        distance = current.get_tag + weight
-                        if distance < temp.get_tag:
-                            temp.set_tag(distance)
-                            temp.set_info(current.get_info() + "-" + current.get_key() + "-")
-                            pq.put(temp)
+            curr_node = NodeData(pq.get()[1])
+            curr_weight = curr_node.get_weight()
+
+            # If the node has not been visited yet
+            if curr_node.get_tag() == 0:
+                neighbors = self.graph.all_out_edges_of_node(curr_node.get_key())
+                for neighbor in neighbors:
+                    edge_weight = self.graph.all_out_edges_of_node(curr_node.get_key()[neighbor])
+                    distance = curr_node.get_tag() + edge_weight
+                    if curr_weight + distance < NodeData(neighbor).get_weight():
+                        nei = NodeData(neighbor)
+                        nei.set_weight(curr_weight + distance)
+                        key = str(curr_node.get_key())
+                        nei.set_info(curr_node.get_info() + "->" + key)
+                        if nei.get_tag() == 0:
+                            pq.put((nei.get_tag(), nei))
+
+            curr_node.set_tag(1)  # marked
 
     def shortest_path_distance(self, id1: int, id2: int) -> float:
         """
@@ -258,4 +268,3 @@ class GraphAlgo(GraphAlgoInterface):
             return True
         except ValueError:
             return False
-

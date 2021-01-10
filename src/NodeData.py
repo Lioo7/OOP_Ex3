@@ -1,6 +1,6 @@
 class NodeData:
 
-    def __init__(self, key: int, weight: float = 0.0, pos: tuple = None, tag=float('inf'), info: str = None):
+    def __init__(self, key: int, weight=float('inf'), pos: tuple = None, tag=0, info: str = None):
         self.key = key
         self.weight = weight
         self.pos = pos

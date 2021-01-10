@@ -60,15 +60,15 @@ def generate_connected_graph():
 
 class TestDiGraph(unittest.TestCase):
 
-    def test_run_time_random_graph(self):  # 50 Seconds
-        # Test the time that takes to create a random graph with 1M nodes and 10M random edges
-        start = time.time()
-        g = generate_random_graph()
-        end = time.time()
-        print("\nrandom_graph")
-        print("Run time:", end - start)
-        print("Number of nodes:", g.v_size())
-        print("Number of edges:", g.e_size(), "\n")
+    # def test_run_time_random_graph(self):  # 50 Seconds
+    #     # Test the time that takes to create a random graph with 1M nodes and 10M random edges
+    #     start = time.time()
+    #     g = generate_random_graph()
+    #     end = time.time()
+    #     print("\nrandom_graph")
+    #     print("Run time:", end - start)
+    #     print("Number of nodes:", g.v_size())
+    #     print("Number of edges:", g.e_size(), "\n")
 
     def test_run_time_million_graph(self):  # 3 Seconds
         # Test the time that takes to create a graph with 1M nodes and 1M edges
