@@ -1,4 +1,5 @@
 import json
+from queue import PriorityQueue
 from typing import List
 from DiGraph import DiGraph
 from NodeData import NodeData
@@ -118,8 +119,8 @@ class GraphAlgo(GraphAlgoInterface):
         ssc = [id1]
         # Go over all the key's nodes in the graph
         for key in self.graph.get_all_v().keys():
-            # If there is a path between 1d1 to key and also to the opposite direction
-            if id1 != key and self.shortest_path(id1, key) != (float('inf'), []) and\
+            # If there is a path between id1 to key and also to the opposite direction
+            if id1 != key and self.shortest_path(id1, key) != (float('inf'), []) and \
                     self.shortest_path(key, id1) != (float('inf'), []):
                 ssc.append(key)
                 NodeData(key).set_tag = 1
@@ -154,3 +155,53 @@ class GraphAlgo(GraphAlgoInterface):
         @return: None
         """
         raise NotImplementedError
+
+    # HELPFUL FUNCTIONS #
+
+    # Creates a set which contains all the visited nodes.
+    visited = ()
+
+    def dijkstra(self, src, visited):
+        """
+        The Dijkstra's algorithm is an algorithm for finding the shortest paths between nodes in a graph.
+        For a given source node in the graph, the algorithm finds the shortest path between that node and every other.
+        :param src: the source node
+        :param visited: the set of visited nodes
+        :return: None
+        """
+
+        # Clears the visited set and initializes all to nodes in the graph to their default values,
+        # except the tag of the source, which gets the value 0.
+        visited.clear()
+
+        for key in self.graph.get_all_v().keys():
+            NodeData(key).set_info(None)
+            NodeData(key).set_tag(float('inf'))
+
+        src.set_tag(0)
+
+        # Creates a priority queue which will contain the nodes that need to traverse.
+        # The priority queue ranks the nodes by their tag values from the greater to the lesser.
+        pq = PriorityQueue(maxsize=self.graph.v_size())
+        pq.add((src.get_tag(), src))
+
+        """
+        While the p.queue is not empty, the algorithm takes the first node (if is not visited yet)
+        marks it and traverses all its neighbors. If this neighbor is not yet visited,
+        it adds to the p.queue and calculates its distance from the source.
+        If its distance is smaller than its tag value, then sets its tag to be distance
+        and set its info to contain the path from the source till this node. Then adds this node to the p.queue.
+        After the algorithm finishes gaining with all the neighbors, it continues to the next node in the p.queue.
+        """
+        while pq.not_empty:
+            current = pq.get()[1]
+            if current not in visited:
+                visited.add(current)
+                for temp in self.graph.all_out_edges_of_node(current.get_key()):
+                    if temp not in visited:
+                        weight = self.graph.all_out_edges_of_node(current.get_key.get(temp))
+                        distance = current.get_tag + weight
+                        if distance < temp.get_tag:
+                            temp.set_tag(distance)
+                            temp.set_info(current.get_info() + "-" + current.get_key() + "-")
+                            pq.put(temp)
