@@ -13,6 +13,9 @@ class NodeData:
     def get_pos(self):
         return self.pos
 
+    def set_pos(self, pos: tuple):
+        self.pos = pos
+
     def get_weight(self):
         return self.weight
 

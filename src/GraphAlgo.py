@@ -6,6 +6,7 @@ from NodeData import NodeData
 from src import GraphInterface
 from src.GraphAlgoInterface import GraphAlgoInterface
 from matplotlib import pyplot as plt
+from random import uniform
 
 
 class GraphAlgo(GraphAlgoInterface):
@@ -162,15 +163,28 @@ class GraphAlgo(GraphAlgoInterface):
         @return: None
         """
         head_width = 0.05  # vertex's width
+        min_x = min_y = 0  # the lower limit of the random float
+        max_x = max_y = 1000  # the upper limit of the random float
         x_nodes_list = []  # X-axis of the vertices
         y_nodes_list = []  # y-axis of the vertices
 
         # traverses the vertices list
-        for key in self.get_graph().get_all_v().values():
-            pos_node = key.get_pos()
+        for key in self.get_graph().get_all_v():
+            node = self.graph.get_node(key)
+            pos_node = node.get_pos()
+            # if the node does not have a position, placed in a random position
+            if pos_node is None:
+                x_node = uniform(min_x, max_x)
+                y_node = uniform(min_y, max_y)
+                # Sets the node's position
+                new_pos = (x_node, y_node)
+                node.set_pos(new_pos)
+            # otherwise, the node will be placed in its original position
+            else:
+                x_node = pos_node[0]
+                y_node = pos_node[1]
+
             # adds the x and the y of each vertex to the lists
-            x_node = pos_node[0]
-            y_node = pos_node[1]
             x_nodes_list.append(x_node)
             y_nodes_list.append(y_node)
 
