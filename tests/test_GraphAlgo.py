@@ -44,6 +44,21 @@ class TestGraphAlgo(unittest.TestCase):
         self.g.add_edge(1, 2, 4)
         self.assertEqual(1, self.ga.get_graph().e_size())
 
+    def test_load_and_save(self):
+        file = '../data/test_save.json'
+        self.graph_algo.save_to_json(file)
+        self.g1 = GraphAlgo()
+        self.assertTrue(self.g1.load_from_json(file))
+        print(self.g1.get_graph())
+
+        self.g2 = GraphAlgo()
+        self.assertTrue(self.g2.load_from_json('../data/A4'))
+        print(self.g2.get_graph())
+
+        self.g3 = GraphAlgo()
+        self.assertTrue(self.g3.load_from_json('../data/G_100_800_1.json'))
+        print(self.g3.get_graph())
+
     def test_shortest_path(self):
         self.assertIsNotNone(self.graph_algo.shortest_path(1, 2))
         self.assertIsNotNone(self.graph_algo.shortest_path(5, 6))
