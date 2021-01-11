@@ -7,16 +7,16 @@ from src.GraphAlgo import GraphAlgo
 class TestGraphAlgo(unittest.TestCase):
     def setUp(self) -> None:
         self.graph = DiGraph()
-        self.graph.add_node(1)
-        self.graph.add_node(2)
-        self.graph.add_node(3)
-        self.graph.add_node(4)
-        self.graph.add_node(5)
-        self.graph.add_node(6)
-        self.graph.add_node(7)
-        self.graph.add_node(8)
-        self.graph.add_node(9)
-        self.graph.add_node(10)
+        self.graph.add_node(1, (1, 1))
+        self.graph.add_node(2, (2, 2))
+        self.graph.add_node(3, (3, 3))
+        self.graph.add_node(4, (4, 4))
+        self.graph.add_node(5, (5, 5))
+        self.graph.add_node(6, (6, 6))
+        self.graph.add_node(7, (7, 7))
+        self.graph.add_node(8, (8, 8))
+        self.graph.add_node(9, (9, 9))
+        self.graph.add_node(10, (10, 10))
         self.graph.add_edge(1, 2, 1.5)
         self.graph.add_edge(1, 3, 3)
         self.graph.add_edge(2, 4, 2)
@@ -78,6 +78,9 @@ class TestGraphAlgo(unittest.TestCase):
         self.graph.remove_edge(9, 10)
         self.assertEqual([[1, 7], [2, 3, 4], [5, 6, 8], [9], [10]], self.graph_algo.connected_components())
         self.assertEqual(5, len(self.graph_algo.connected_components()))
+
+    def test_plot_graph(self):
+        self.graph_algo.plot_graph()
 
 
 if __name__ == '__main__':

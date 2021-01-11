@@ -1,11 +1,11 @@
 class NodeData:
 
-    def __init__(self, key: int, weight=float('inf'), pos: tuple = None, tag: int = 0, info: str = ""):
+    def __init__(self, key: int, pos: tuple = None):
         self.key = key
-        self.weight = weight
+        self.weight = float('inf')
         self.pos = pos
-        self.tag = tag
-        self.info = info
+        self.tag = 0
+        self.info = ""
 
     def get_key(self):
         return self.key

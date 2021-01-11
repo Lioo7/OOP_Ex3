@@ -166,8 +166,8 @@ class GraphAlgo(GraphAlgoInterface):
         y_nodes_list = []  # y-axis of the vertices
 
         # traverses the vertices list
-        for key in self.graph.get_all_v():
-            pos_node = NodeData(key).get_pos()
+        for key in self.get_graph().get_all_v().values():
+            pos_node = key.get_pos()
             # adds the x and the y of each vertex to the lists
             x_node = pos_node[0]
             y_node = pos_node[1]
@@ -178,10 +178,9 @@ class GraphAlgo(GraphAlgoInterface):
         plt.scatter(x_nodes_list, y_nodes_list)
 
         # traverses the edges
-        for node in self.graph.get_all_v():
-            src = NodeData(node)
+        for src in self.graph.get_all_v().values():
             for dest_key in self.graph.all_out_edges_of_node(src.get_key()).keys():
-                dest_node = NodeData(dest_key)
+                dest_node: NodeData = self.graph.get_all_v().get(dest_key)
                 dest_x = dest_node.get_pos()[0] - src.get_pos()[0]
                 dest_y = dest_node.get_pos()[1] - src.get_pos()[1]
                 src_x = src.get_pos()[0]
