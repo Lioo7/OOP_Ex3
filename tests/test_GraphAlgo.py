@@ -7,7 +7,7 @@ from src.GraphAlgo import GraphAlgo
 class TestGraphAlgo(unittest.TestCase):
     def setUp(self) -> None:
         self.graph = DiGraph()
-        self.graph.add_node(1, (0, 0))
+        self.graph.add_node(1)
         self.graph.add_node(2)
         self.graph.add_node(3)
         self.graph.add_node(4)
