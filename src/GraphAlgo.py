@@ -169,6 +169,7 @@ class GraphAlgo(GraphAlgoInterface):
         max_x = max_y = 1000  # the upper limit of the random float
         x_nodes_list = []  # X-axis of the vertices
         y_nodes_list = []  # y-axis of the vertices
+        key_list = []  # contains all the keys in the graph
 
         # traverses the vertices list
         for key in self.get_graph().get_all_v():
@@ -189,9 +190,18 @@ class GraphAlgo(GraphAlgoInterface):
             # adds the x and the y of each vertex to the lists
             x_nodes_list.append(x_node)
             y_nodes_list.append(y_node)
+            key_list.append(key)
 
         # drawing vertices: (x, y)
         plt.scatter(x_nodes_list, y_nodes_list)
+
+        print("x:", x_nodes_list)
+        print("y:", y_nodes_list)
+        print("key:", key_list)
+
+        for i in range(0, len(key_list)):
+            # drawing key's number: key num | (x-gap,y+gap)
+            plt.annotate(key_list[i], (x_nodes_list[i] - 3.3, y_nodes_list[i] + 12))
 
         # traverses the edges
         for src in self.graph.get_all_v().values():
@@ -205,6 +215,8 @@ class GraphAlgo(GraphAlgoInterface):
                 # drawing edges: dx(src) | dy(dest) | head width
                 plt.arrow(src_x, src_y, dest_x - head_width, dest_y - head_width, head_width=head_width)
 
+        # adds a title
+        plt.title("DiGraph")
         plt.show()
 
     # ======HELPFUL FUNCTIONS====== #
