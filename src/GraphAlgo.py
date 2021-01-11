@@ -83,10 +83,12 @@ class GraphAlgo(GraphAlgoInterface):
         More info:
         https://en.wikipedia.org/wiki/Dijkstra's_algorithm
         """
-        if id1 not in self.graph.nodes.keys() or id2 not in self.graph.nodes.keys():  # Checking if the keys exist
+        # Checking if the keys exist
+        if id1 not in self.graph.nodes.keys() or id2 not in self.graph.nodes.keys():
             return float('inf'), []
-
         if id1 == id2:
+            return float('inf'), []
+        if self.shortest_path_distance(id1, id2) == -1:
             return float('inf'), []
 
         """
@@ -242,9 +244,9 @@ class GraphAlgo(GraphAlgoInterface):
                 for neighbor in neighbors:
                     # edge_weight = self.graph.all_out_edges_of_node(curr_node.get_key()[neighbor])
                     edge_weight = neighbors.get(neighbor)
-                    distance = curr_node.get_tag() + edge_weight
+                    distance = edge_weight
                     nei = self.graph.get_node(neighbor)
-                    if distance < nei.get_weight():
+                    if curr_weight + distance < nei.get_weight():
                         nei.set_weight(curr_weight + distance)
                         key = str(curr_node.get_key())
                         nei.set_info(curr_node.get_info() + "->" + key)
