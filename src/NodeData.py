@@ -1,6 +1,6 @@
 class NodeData:
 
-    def __init__(self, key: int, weight=float('inf'), pos: tuple = None, tag=0, info: str = None):
+    def __init__(self, key: int, weight=float('inf'), pos: tuple = None, tag: int = 0, info: str = ""):
         self.key = key
         self.weight = weight
         self.pos = pos
@@ -33,3 +33,6 @@ class NodeData:
 
     def __repr__(self):
         return "{} | {} | {} | {} | {}".format(self.key, self.weight, self.pos, self.tag, self.info)
+
+    def __lt__(self, other):
+        return self.tag < other.tag
