@@ -47,6 +47,7 @@ class TestGraphAlgo(unittest.TestCase):
     def test_shortest_path(self):
         self.assertIsNotNone(self.graph_algo.shortest_path(1, 2))
         self.assertIsNotNone(self.graph_algo.shortest_path(5, 6))
+        self.assertEqual((3.5, [1, 2, 4]), self.graph_algo.shortest_path(1, 4))
 
     def test_connected_component(self):
         self.assertEqual([1, 2, 3, 4], self.graph_algo.connected_component(1))

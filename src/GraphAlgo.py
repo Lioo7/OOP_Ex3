@@ -83,11 +83,11 @@ class GraphAlgo(GraphAlgoInterface):
         More info:
         https://en.wikipedia.org/wiki/Dijkstra's_algorithm
         """
-        # Creates an empty list which is used to contain the path
-        path = []
+        if id1 not in self.graph.nodes.keys() or id2 not in self.graph.nodes.keys():  # Checking if the keys exist
+            return float('inf'), []
 
         if id1 == id2:
-            return 0, path
+            return float('inf'), []
 
         """
         Calls the dijkstra method to check if there exists a pathway between both of the given nodes.
@@ -95,31 +95,19 @@ class GraphAlgo(GraphAlgoInterface):
         the destination node to the list (by calling isNumeric method).
         Then adds the destination node to the list and returns the path.
         """
+        path = []
         distance = self.shortest_path_distance(id1, id2)
         if distance > -1:
-            destination = NodeData(id2)
+            destination = self.graph.get_node(id2)
             string = destination.get_info()
             arr = string.split("->")
             for temp in arr:
                 if self.is_numeric(temp):
                     key = int(temp)
-                    path.append(NodeData(key))
+                    path.append(key)
 
-            path.append(destination)
+            path.append(id2)
             return distance, path
-
-        return -1, None
-
-    """
-    def get_transpose(self):
-        reverse_graph = DiGraph()
-        for key in self.graph.get_all_v().keys():
-            reverse_graph.add_node(key)
-        for src in reverse_graph.get_all_v().keys():
-            for dest, weight in self.graph.all_out_edges_of_node(src):
-                reverse_graph.add_edge(src, dest, weight)
-        return reverse_graph
-        """
 
     def connected_component(self, id1: int) -> list:
         """

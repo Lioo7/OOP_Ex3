@@ -32,7 +32,7 @@ class NodeData:
         self.info = i
 
     def __repr__(self):
-        return "{} | {} | {} | {} | {}".format(self.key, self.weight, self.pos, self.tag, self.info)
+        return "key:{} | weight:{} | pos:{} | tag:{} | info:{}".format(self.key, self.weight, self.pos, self.tag, self.info)
 
     def __lt__(self, other):
         return self.tag < other.tag
