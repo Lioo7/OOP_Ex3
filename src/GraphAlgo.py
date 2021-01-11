@@ -40,7 +40,7 @@ class GraphAlgo(GraphAlgoInterface):
                 graph.add_edge(e["src"], e["dest"], e["w"])
             self.graph = graph
             return True
-        except IOError as exception:
+        except Exception as exception:
             print(exception)
             return False
         finally:
@@ -53,22 +53,22 @@ class GraphAlgo(GraphAlgoInterface):
         @return: True if the save was successful, Flase o.w.
         """
         try:
-            with open(file_name, "w") as write_file:
-                json_graph = {"Nodes": [], "Edges": []}
+            with open('../data/' + file_name, "w") as write_file:
+                json_graph = {"Edges": [], "Nodes": []}
                 # save edges as json
                 for id1 in self.graph.Neighbors_out.keys():
-                    for id2, w in self.all_out_edges_of_node(id1).items():
-                        json_graph["Edges"].append({"src": id1, "weight": w, "dest": id2})
+                    for id2, w in self.graph.all_out_edges_of_node(id1).items():
+                        json_graph["Edges"].append({"src": id1, "w": w, "dest": id2})
                 # save nodes as json
                 for n in self.graph.nodes.values():
                     if n.pos is None:
                         json_graph["Nodes"].append({"id": n.key})
                     else:
-                        json_graph["Nodes"].append({"pos": n.pos, "id": n.key})
-            json.dump(json_graph, indent=4, fp=write_file)
+                        json_graph["Nodes"].append({"pos": str(n.pos)[1: -1], "id": n.key})
+                json.dump(json_graph, write_file)
             return True
-        except IOError as e:
-            print(e)
+        except Exception as e:
+            print("Exception: ",e)
             return False
         finally:
             write_file.close()

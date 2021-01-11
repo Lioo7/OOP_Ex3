@@ -149,3 +149,12 @@ class DiGraph(GraphInterface):
                 return True
             return False
         return False
+
+    def __repr__(self):
+        edges = []
+        for src in self.nodes.keys():
+            for dest in self.all_in_edges_of_node(src).keys():
+                w = self.all_in_edges_of_node(src)[dest]
+                edges.append({"src": src, "w": w, "dest":dest})
+        s = "Edges={}\nNodes=[{}]\n".format(edges, self.nodes)
+        return s
