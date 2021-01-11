@@ -195,12 +195,8 @@ class GraphAlgo(GraphAlgoInterface):
         # drawing vertices: (x, y)
         plt.scatter(x_nodes_list, y_nodes_list)
 
-        print("x:", x_nodes_list)
-        print("y:", y_nodes_list)
-        print("key:", key_list)
-
+        # drawing key's number: key num | (x-gap,y+gap)
         for i in range(0, len(key_list)):
-            # drawing key's number: key num | (x-gap,y+gap)
             plt.annotate(key_list[i], (x_nodes_list[i] - 3.3, y_nodes_list[i] + 12))
 
         # traverses the edges
