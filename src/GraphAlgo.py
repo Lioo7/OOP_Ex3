@@ -180,7 +180,7 @@ class GraphAlgo(GraphAlgoInterface):
         # traverses the edges
         for src in self.graph.get_all_v().values():
             for dest_key in self.graph.all_out_edges_of_node(src.get_key()).keys():
-                dest_node: NodeData = self.graph.get_all_v().get(dest_key)
+                dest_node = self.graph.get_node(dest_key)
                 dest_x = dest_node.get_pos()[0] - src.get_pos()[0]
                 dest_y = dest_node.get_pos()[1] - src.get_pos()[1]
                 src_x = src.get_pos()[0]
