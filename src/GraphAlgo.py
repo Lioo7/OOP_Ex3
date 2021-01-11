@@ -5,12 +5,11 @@ from DiGraph import DiGraph
 from NodeData import NodeData
 from src import GraphInterface
 from src.GraphAlgoInterface import GraphAlgoInterface
-from matplotlib import pyplot as plt
 
 
 class GraphAlgo(GraphAlgoInterface):
-    def __init__(self, g: DiGraph = DiGraph()):
-        self.graph = g
+    def __init__(self):
+        self.graph = DiGraph()
 
     def get_graph(self) -> GraphInterface:
         """
@@ -78,10 +77,6 @@ class GraphAlgo(GraphAlgoInterface):
         @param id1: The start node id
         @param id2: The end node id
         @return: The distance of the path, the path as a list
-        Notes:
-        If there is no path between id1 and id2, or one of them dose not exist the function returns (float('inf'),[])
-        More info:
-        https://en.wikipedia.org/wiki/Dijkstra's_algorithm
         """
         # Creates an empty list which is used to contain the path
         path = []
@@ -130,16 +125,16 @@ class GraphAlgo(GraphAlgoInterface):
         If the graph is None or id1 is not in the graph, the function should return an empty list []
         """
         # If the graph is None or id1 is not in the graph, return an empty list []
-
         if self.graph is None or id1 not in self.graph.nodes.keys():
             return []
         ssc = [id1]
         # Go over all the key's nodes in the graph
         for key in self.graph.get_all_v().keys():
             # If there is a path between id1 to key and also to the opposite direction
-            if id1 != key and self.shortest_path_distance(id1, key) != -1 and \
-                    self.shortest_path_distance(key, id1) != -1:
+            if id1 != key and self.shortest_path(id1, key) != (float('inf'), []) and \
+                    self.shortest_path(key, id1) != (float('inf'), []):
                 ssc.append(key)
+                NodeData(key).set_tag = 1
         return ssc
 
     def connected_components(self) -> List[list]:
@@ -152,18 +147,15 @@ class GraphAlgo(GraphAlgoInterface):
         # If the graph is None, return an empty list []
         if self.graph is None:
             return []
-        all_covered = []
         # Resets all the tags to zero
         for key in self.graph.get_all_v().keys():
-            self.graph.get_node(key).set_tag(0)
+            NodeData(key).set_tag = 0
         all_scc = []
         # Go over all the key's nodes in the graph
         for key in self.graph.get_all_v().keys():
-            if key not in all_covered: # the key is not in a scc yet
-                scc_key = self.connected_component(key)
-                for node in scc_key:
-                    all_covered.append(node)
+            if NodeData(key).get_tag != 1:
                 all_scc.append(scc_key)
+                scc_key = self.connected_component(key)
         return all_scc
 
     def plot_graph(self) -> None:
@@ -173,36 +165,7 @@ class GraphAlgo(GraphAlgoInterface):
         Otherwise, they will be placed in a random but elegant manner.
         @return: None
         """
-        head_width = 0.05  # vertex's width
-        x_nodes_list = []  # X-axis of the vertices
-        y_nodes_list = []  # y-axis of the vertices
-
-        # traverses the vertices list
-        for key in self.graph.get_all_v():
-            pos_node = NodeData(key).get_pos()
-            # adds the x and the y of each vertex to the lists
-            x_node = pos_node[0]
-            y_node = pos_node[1]
-            x_nodes_list.append(x_node)
-            y_nodes_list.append(y_node)
-
-        # drawing vertices: (x, y)
-        plt.scatter(x_nodes_list, y_nodes_list)
-
-        # traverses the edges
-        for node in self.graph.get_all_v():
-            src = NodeData(node)
-            for dest_key in self.graph.all_out_edges_of_node(src.get_key()).keys():
-                dest_node = NodeData(dest_key)
-                dest_x = dest_node.get_pos()[0] - src.get_pos()[0]
-                dest_y = dest_node.get_pos()[1] - src.get_pos()[1]
-                src_x = src.get_pos()[0]
-                src_y = src.get_pos()[1]
-
-                # drawing edges: dx(src) | dy(dest) | head width
-                plt.arrow(src_x, src_y, dest_x - head_width, dest_y - head_width, head_width=head_width)
-
-        plt.show()
+        raise NotImplementedError
 
     # ======HELPFUL FUNCTIONS====== #
 
@@ -212,10 +175,9 @@ class GraphAlgo(GraphAlgoInterface):
         :return: None
         """
         for key in self.graph.get_all_v().keys():
-            node = self.graph.get_node(key)
-            node.set_info("")
-            node.set_tag(0)
-            node.set_weight(float('inf'))
+            NodeData(key).set_info(None)
+            NodeData(key).set_tag(0)
+            NodeData(key).set_weight(float('inf'))
 
     def dijkstra(self, source):
         """
@@ -229,7 +191,7 @@ class GraphAlgo(GraphAlgoInterface):
         self.clear()
 
         # Sets the source node values to zero
-        src =self.graph.get_node(source)
+        src = NodeData(source)
         src.set_tag(0)
         src.set_weight(0)
 
@@ -246,18 +208,18 @@ class GraphAlgo(GraphAlgoInterface):
         and set its info to contain the path from the source till this node. Then adds this node to the p.queue.
         After the algorithm finishes gaining with all the neighbors, it continues to the next node in the p.queue.
         """
-        while not pq.empty():
-            curr_node = pq.get()[1]
+        while pq.not_empty:
+            curr_node = NodeData(pq.get()[1])
             curr_weight = curr_node.get_weight()
+
             # If the node has not been visited yet
             if curr_node.get_tag() == 0:
                 neighbors = self.graph.all_out_edges_of_node(curr_node.get_key())
                 for neighbor in neighbors:
-                    # edge_weight = self.graph.all_out_edges_of_node(curr_node.get_key()[neighbor])
-                    edge_weight = neighbors.get(neighbor)
+                    edge_weight = self.graph.all_out_edges_of_node(curr_node.get_key()[neighbor])
                     distance = curr_node.get_tag() + edge_weight
-                    nei = self.graph.get_node(neighbor)
-                    if distance < nei.get_weight():
+                    if distance < NodeData(neighbor).get_weight():
+                        nei = NodeData(neighbor)
                         nei.set_weight(curr_weight + distance)
                         key = str(curr_node.get_key())
                         nei.set_info(curr_node.get_info() + "->" + key)
@@ -282,15 +244,15 @@ class GraphAlgo(GraphAlgoInterface):
             return 0
 
         source = NodeData(id1)
-        destination = self.graph.get_node(id2)
+        destination = NodeData(id2)
         infinity = float('inf')
 
         # Calls dijkstra function
         self.dijkstra(id1)
 
         # returns the tag of the destination only if its distance is lower than infinity
-        if destination.get_weight() < infinity:
-            return destination.get_weight()
+        if destination.get_tag() < infinity:
+            return destination.get_tag()
         else:
             return -1
 
