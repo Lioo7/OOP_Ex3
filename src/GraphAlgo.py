@@ -5,6 +5,7 @@ from DiGraph import DiGraph
 from NodeData import NodeData
 from src import GraphInterface
 from src.GraphAlgoInterface import GraphAlgoInterface
+from matplotlib import pyplot as plt
 
 
 class GraphAlgo(GraphAlgoInterface):
@@ -165,7 +166,36 @@ class GraphAlgo(GraphAlgoInterface):
         Otherwise, they will be placed in a random but elegant manner.
         @return: None
         """
-        raise NotImplementedError
+        head_width = 0.05  # vertex's width
+        x_nodes_list = [] # X-axis of the vertices
+        y_nodes_list = []  # y-axis of the vertices
+
+        # traverses the vertices list
+        for key in self.graph.get_all_v():
+            pos_node = NodeData(key).get_pos()
+            # adds the x and the y of each vertex to the lists
+            x_node = pos_node[0]
+            y_node = pos_node[1]
+            x_nodes_list.append(x_node)
+            y_nodes_list.append(y_node)
+
+        # drawing vertices: (x, y)
+        plt.scatter(x_nodes_list, y_nodes_list)
+
+        # traverses the edges
+        for node in self.graph.get_all_v():
+            src = NodeData(node)
+            for dest_key in self.graph.all_out_edges_of_node(src.get_key()).keys():
+                dest_node = NodeData(dest_key)
+                dest_x = dest_node.get_pos()[0] - src.get_pos()[0]
+                dest_y = dest_node.get_pos()[1] - src.get_pos()[1]
+                src_x = src.get_pos()[0]
+                src_y = src.get_pos()[1]
+
+                # drawing edges: dx(src) | dy(dest) | head width
+                plt.arrow(src_x, src_y, dest_x - head_width, dest_y - head_width, head_width=head_width)
+
+        plt.show()
 
     # ======HELPFUL FUNCTIONS====== #
 
