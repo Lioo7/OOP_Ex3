@@ -82,6 +82,13 @@ class TestGraphAlgo(unittest.TestCase):
     def test_plot_graph(self):
         self.graph_algo.plot_graph()
 
+    def test_shortest_path_distance(self):
+        self.assertEqual(1.5, self.graph_algo.shortest_path_distance(1, 2))
+
+    def test_is_numeric(self):
+        self.assertTrue(self.graph_algo.is_numeric("1"))
+        self.assertFalse(self.graph_algo.is_numeric("f"))
+
 
 if __name__ == '__main__':
     unittest.main()
