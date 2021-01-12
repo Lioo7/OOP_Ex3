@@ -4,17 +4,17 @@ import numpy as np
 import pandas as pd
 
 
-def networkx():
-    g = nx.DiGraph()
-    g.add_node(1)
-    g.add_nodes_from(range(2, 7))
-    g.add_weighted_edges_from([(1, 2, 5.5), (2, 3, 4.8), (2, 5, 1), (3, 4, 10.1), (4, 5, 20), (5, 1, 1)])
-    print(nx.shortest_path(g, 1, 5))
-    print(nx.shortest_path_length(g, 1, 5))
-
-    # print(nx.connected_components(g))
-    g = nx.draw(g)
-    plt.show()
+# def networkx():
+#     g = nx.DiGraph()
+#     g.add_node(1)
+#     g.add_nodes_from(range(2, 7))
+#     g.add_weighted_edges_from([(1, 2, 5.5), (2, 3, 4.8), (2, 5, 1), (3, 4, 10.1), (4, 5, 20), (5, 1, 1)])
+#     print(nx.shortest_path(g, 1, 5))
+#     print(nx.shortest_path_length(g, 1, 5))
+#
+#     # print(nx.connected_components(g))
+#     g = nx.draw(g)
+#     plt.show()
 
 
 def plot_bar_chart():
@@ -53,8 +53,8 @@ def plot_bar_chart():
     plt.bar(ind + 2 * width, networkx_bar, width, label='Networkx')
 
     # plt.xlabel('Here goes x-axis label')
-    plt.ylabel('Run time(in sec)')
-    plt.title('scenario 1')
+    plt.ylabel('Run time(in sec)', fontsize=1.5*fontsize)
+    plt.title('Graph #1: |V|=10, |E|=80')
 
     # plt.xticks()
     # First argument - A list of positions at which ticks should be placed
@@ -79,8 +79,8 @@ def plot_bar_chart():
     plt.bar(ind + 2 * width, networkx_bar, width, label='Networkx')
 
     # plt.xlabel('Here goes x-axis label')
-    plt.ylabel('Run time(in sec)')
-    plt.title('scenario 2')
+    plt.ylabel('Run time(in sec)', fontsize=1.5*fontsize)
+    plt.title('Graph #2: |V|=100, |E|=800')
 
     # plt.xticks()
     # First argument - A list of positions at which ticks should be placed
@@ -105,8 +105,8 @@ def plot_bar_chart():
     plt.bar(ind + 2 * width, networkx_bar, width, label='Networkx')
 
     # plt.xlabel('Here goes x-axis label')
-    plt.ylabel('Run time(in sec)')
-    plt.title('scenario 3')
+    plt.ylabel('Run time(in sec)', fontsize=1.5*fontsize)
+    plt.title('Graph #3: |V|=1,000, |E|=8,000')
 
     # plt.xticks()
     # First argument - A list of positions at which ticks should be placed
@@ -131,8 +131,8 @@ def plot_bar_chart():
     plt.bar(ind + 2 * width, networkx_bar, width, label='Networkx')
 
     # plt.xlabel('Here goes x-axis label')
-    plt.ylabel('Run time(in sec)')
-    plt.title('scenario 4')
+    plt.ylabel('Run time(in sec)', fontsize=1.5*fontsize)
+    plt.title('Graph #4: |V|=10,000, |E|=80,000')
 
     # plt.xticks()
     # First argument - A list of positions at which ticks should be placed
@@ -157,8 +157,8 @@ def plot_bar_chart():
     plt.bar(ind + 2 * width, networkx_bar, width, label='Networkx')
 
     # plt.xlabel('Here goes x-axis label')
-    plt.ylabel('Run time(in sec)')
-    plt.title('scenario 5')
+    plt.ylabel('Run time(in sec)', fontsize=1.5*fontsize)
+    plt.title('Graph #5: |V|=20,000, |E|=160,000')
 
     # plt.xticks()
     # First argument - A list of positions at which ticks should be placed
@@ -182,8 +182,8 @@ def plot_bar_chart():
     plt.bar(ind + 2 * width, networkx_bar, width, label='Networkx')
 
     # plt.xlabel('Here goes x-axis label')
-    plt.ylabel('Run time(in sec)')
-    plt.title('scenario 6')
+    plt.ylabel('Run time(in sec)', fontsize=1.5*fontsize)
+    plt.title('Graph #6: |V|=30,000, |E|=2,400,000')
 
     # plt.xticks()
     # First argument - A list of positions at which ticks should be placed
