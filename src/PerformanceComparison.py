@@ -1,24 +1,8 @@
-import copy
-import math
-from collections import deque
-import unittest
-from DiGraph import DiGraph
 from GraphAlgo import GraphAlgo
-import numpy as np
-import matplotlib.pyplot as plt
-import random
-import networkx as nx
-import json
-from datetime import datetime
 import time
-from GraphAlgoInterface import GraphAlgoInterface
-from DiGraph import DiGraph
-from GraphInterface import GraphInterface
 import json
-import numpy as np
-import matplotlib.pyplot as plt
-import random
 import networkx as nx
+from Plot import plot_bar_chart
 
 # from GraphAttributes import Node
 from types import SimpleNamespace
@@ -55,8 +39,7 @@ if __name__ == '__main__':
         graph = nx.DiGraph()
         for currentNode in nodes:
             id = currentNode.get('id')
-            # print(id)
-            graph.add_node(graph)  # graph or id ???
+            graph.add_node(id)  # changed graph to id
         for e in edges:
             src = e.get('src')
             dest = e.get('dest')
@@ -73,13 +56,16 @@ if __name__ == '__main__':
         result = end - start
         print("networkx time")
         print("shortest " + " time from " + str(src) + " to " + str(dest) + " is: " + str(result))
-        nx_results.append(result)
+        nx_results.append(result)  # add shortest path time
+
+        nx_results.append(0)  # add connected component time which not exist -> always zero
+
         start = time.time()
         strong = nx.strongly_connected_components(graph)
         end = time.time()
         result = end - start
-        print("component time   is: " + str(result))
-        nx_results.append(result)
+        print("components time is: " + str(result))
+        nx_results.append(result)  # add connected components time
 
         # ============================================Python-test=======================================================
 
@@ -91,15 +77,8 @@ if __name__ == '__main__':
         result = end - start
         print("GA time:")
         print("shortest " + " time from " + str(src) + " to " + str(dest) + " is: " + str(result))
-        python_results.append(result)
+        python_results.append(result) # add connected shortest path time
 
-        start = time.time()
-        ccs = ga.connected_components()
-        end = time.time()
-        result = end - start
-        # print(nx.edges(graph))
-        print("component time for Graph   is: " + str(end - start))
-        python_results.append(result)
 
         start = time.time()
         cc = ga.connected_component(0)
@@ -107,6 +86,16 @@ if __name__ == '__main__':
         result = end - start
         # print(nx.edges(graph))
         print("component time for id 0   is: " + str(result))
-        python_results.append(result)
+        python_results.append(result) # add connected component time
+
+        start = time.time()
+        ccs = ga.connected_components()
+        end = time.time()
+        result = end - start
+        # print(nx.edges(graph))
+        print("component time for Graph   is: " + str(end - start))
+        python_results.append(result) # add connected components time
         print(" ")
         print(" ")
+
+print(nx_results)
