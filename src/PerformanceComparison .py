@@ -63,7 +63,13 @@ def autolabel(rects, ax):
                     textcoords="offset points",
                     ha='center', va='bottom')
 
+
 def draw():
+    """
+    based on:
+    https://stackoverflow.com/questions/10369681/how-to-plot-bar-graphs-with-same-x-coordinates-side-by-side-dodged
+    :return: a bar chart
+    """
     # Numbers of pairs of bars you want
     N = 3
 
