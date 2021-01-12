@@ -39,6 +39,8 @@ if __name__ == '__main__':
     nx_results = []  # contains the results(time) of networkx program
     python_results = []  # contains the results(time) of our python program
 
+    # ==============================================Graph-builder=======================================================
+
     ga = GraphAlgo()
     graphs = ["G_10_80_1.json", "G_100_800_1.json", "G_1000_8000_1.json", "G_10000_80000_1.json",
               "G_20000_160000_1.json", "G_30000_240000_1.json"]
@@ -54,12 +56,14 @@ if __name__ == '__main__':
         for currentNode in nodes:
             id = currentNode.get('id')
             # print(id)
-            graph.add_node(graph)
+            graph.add_node(graph)  # graph or id ???
         for e in edges:
             src = e.get('src')
             dest = e.get('dest')
             w = e.get('w')
             graph.add_edge(src, dest, weight=w)
+
+        # =================================================Networkx-test========================================================
 
         start = time.time()
         src = paths[number][0]
@@ -76,6 +80,8 @@ if __name__ == '__main__':
         result = end - start
         print("component time   is: " + str(result))
         nx_results.append(result)
+
+        # ==================================================Python-test=========================================================
 
         start = time.time()
         src = paths[number][0]
