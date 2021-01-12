@@ -25,7 +25,7 @@ def plot_bar_chart():
     """
     # Numbers of pairs of bars you want
     N = 3
-
+    # Font size
     fontsize = 6.5
 
     # ===================================================plot 1=========================================================
