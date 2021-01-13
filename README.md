@@ -11,6 +11,11 @@
 **In this project is about implementing data structure and algorithms in a weighted directed graph accompanied by different graphs algorithms in Python.<br/>
 We used two interfaces to implement the graph properties and we implemented the graph by three classes.<br/>**
 
+## Illustration :
+
+
+![](https://miro.medium.com/max/1408/1*fYKrGW0IUeoS_8XtCoNaLw.gif)
+
 
 ## Data Structures:
 
@@ -60,6 +65,7 @@ The Graph_Algo object contains a graph to activate the algorithms on.<br/>
 
 
 ## Tests:
+
 This ptoject includes two unittest files :
 test_DiGraph - Testing DiGraph class's functions.
 test_GraphAlgo - Testing GraphAlgo class's functions.
