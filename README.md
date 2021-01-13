@@ -1,6 +1,6 @@
 # OOP_Ex3
 ## Ex3 : Weighted Directed Graph Python Implementation - python
-![alt text](https://i.ibb.co/FH3J4FM/LOGO.jpg)
+![alt text](https://i.ibb.co/MpFkXKD/LOGO-1.jpg)
 
 ## This project was made during our OOP course at Ariel University in the Department of Computer Science, 2021.
 
@@ -8,7 +8,7 @@
 
 ### Made by: Elhai Mansbach & Lioz Akirav.
 
-**In this project we implemented a weighted directed graph accompanied by different graphs algorithms in Python.<br/>
+**In this project is about implement data structure and algorithms in a weighted directed graph accompanied by different graphs algorithms in Python.<br/>
 We used two interfaces to implement the graph properties and we implemented the graph by three classes.<br/>**
 
 
@@ -41,19 +41,21 @@ The class include these functions:
 *The GraphAlgoInterface interface is implemented in GraphAlgo class:*<br/>
 The Graph_Algo object contains a graph to activate the algorithms on.<br/>
 
-**This class represents the Graph Theory algorithms including:**<br/>
-1. **__init__:** Init this set of algorithms on a given graph<br/>
-2. **get_graph:** Return the underlying graph of which this class works<br/>
-3. **shortest_path:** Returns the shortest path from node id1 to node id2.<br/>
-4. **connected_component:** Finds the Strongly Connected Component(SCC) that node id1 is a part of.<br/>
-5. **connected_components:** Finds all the Strongly Connected Component(SCC) in the graph.<br/>
-6. **save_to_json:** Saves this weighted directed graph to the given file name - in JSON format.<br/>
-7. **load_from_json:** Loads the graph from the file.<br/>
-8. **plot_graph:** Plots the graph.<br/>
-9. **clear:** PClears the graph  and initializes all the nodes in the graph to their default values.<br/>
-10 .**dijkstra:** Algorithm for finding the shortest paths between nodes in a graph.<br/>
-11 .**shortest_path_distance:** Returns the shortest distance between two given nodes.<br/>
-12 .**is_numeric:** The method gets a string and checks if its contains a number.<br/>
+**This class represents the Graph Theory algorithms including these functions:**<br/>
+* __init__ - Initialize the graphh<br/>
+* get_graph - Returns the underlying graph of which this class works<br/>
+* shortest_path - Returns the shortest path and distance from node id1 to node id2.<br/>
+* connected_component - Finds the Strongly Connected Component(SCC) that node id1 is a part of.<br/>
+* connected_components - Finds all the Strongly Connected Component(SCC) in the graph.<br/>
+* save_to_json - Saves this weighted directed graph to the given file name - in JSON format.<br/>
+* load_from_json - Loads the graph from the file.<br/>
+* plot_graph - Plots the graph.<br/>
+
+**This class also include these private functions:**<br/>
+* clear - PClears the graph and initializes all the nodes in the graph to their default values.<br/>
+* dijkstra - Algorithm for finding the shortest paths between nodes in a graph.<br/>
+* shortest_path_distance - Returns the shortest distance between two given nodes.<br/>
+* is_numeric - The method gets a string and checks if its contains a number.<br/>
 
 
 
