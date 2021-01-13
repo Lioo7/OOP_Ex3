@@ -95,6 +95,8 @@ class TestGraphAlgo(unittest.TestCase):
         self.graph.remove_edge(1, 3)
         self.assertEqual([1], self.graph_algo.connected_component(1))
         self.assertEqual([2, 3, 4, 5, 6, 8], self.graph_algo.connected_component(6))
+        self.assertEqual([], self.graph_algo.connected_component(199))
+
 
     def test_connected_components(self):
         self.assertIsNotNone(self.graph_algo.connected_components())

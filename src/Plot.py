@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def plot_bar_chart():
+def plot_bar_chart(nx: dict, py: dict, java: dict):
     """
     based on:
     https://stackoverflow.com/questions/10369681/how-to-plot-bar-graphs-with-same-x-coordinates-side-by-side-dodged
@@ -16,11 +16,11 @@ def plot_bar_chart():
     # ===================================================plot 1=========================================================
     # Data on X-axis
     # Specify the values of blue bars (height)
-    networkx_bar = (1, 2, 3)
+    networkx_bar = nx[0], nx[0+6], nx[0+12]
     # Specify the values of orange bars (height)
-    python_bar = (23, 25, 17)
+    python_bar = py[0], py[0+6], py[+12]
     # Specify the values of green bars (height)
-    java_bar = (19, 18, 14)
+    java_bar = java[0], java[0+6], java[+12]
 
     # Position of bars on x-axis
     ind = np.arange(N)
@@ -52,11 +52,11 @@ def plot_bar_chart():
     # ===================================================plot 2=========================================================
     # Data on X-axis
     # Specify the values of blue bars (height)
-    networkx_bar = (1, 2, 3)
+    networkx_bar = nx[1], nx[1+6], nx[1+12]
     # Specify the values of orange bars (height)
-    python_bar = (23, 25, 17)
+    python_bar = py[1], py[1+6], py[1+12]
     # Specify the values of green bars (height)
-    java_bar = (19, 18, 14)
+    java_bar = java[1], java[1+6], java[1+12]
 
     plt.subplot(2, 3, 2)
     # Plotting
@@ -79,12 +79,11 @@ def plot_bar_chart():
     # ===================================================plot 3=========================================================
     # Data on X-axis
     # Specify the values of blue bars (height)
-    networkx_bar = (1, 2, 3)
+    networkx_bar = nx[2], nx[2+6], nx[2+12]
     # Specify the values of orange bars (height)
-    python_bar = (23, 25, 17)
+    python_bar = py[2], py[2+6], py[2+12]
     # Specify the values of green bars (height)
-    java_bar = (19, 18, 14)
-
+    java_bar = java[2], java[2+6], java[2+12]
     plt.subplot(2, 3, 3)
     # Plotting
     plt.bar(ind, networkx_bar, width, label='Networkx')
@@ -106,11 +105,11 @@ def plot_bar_chart():
     # ===================================================plot 4=========================================================
     # Data on X-axis
     # Specify the values of blue bars (height)
-    networkx_bar = (1, 2, 3)
+    networkx_bar = nx[3], nx[3+6], nx[3+12]
     # Specify the values of orange bars (height)
-    python_bar = (23, 25, 17)
+    python_bar = py[3], py[3+6], py[3+12]
     # Specify the values of green bars (height)
-    java_bar = (19, 18, 14)
+    java_bar = java[3], java[3+6], java[3+12]
 
     plt.subplot(2, 3, 4)
     # Plotting
@@ -133,11 +132,11 @@ def plot_bar_chart():
     # ===================================================plot 5=========================================================
     # Data on X-axis
     # Specify the values of blue bars (height)
-    networkx_bar = (1, 2, 3)
+    networkx_bar = nx[4], nx[4+6], nx[4+12]
     # Specify the values of orange bars (height)
-    python_bar = (23, 25, 17)
+    python_bar = py[4], py[4+6], py[4+12]
     # Specify the values of green bars (height)
-    java_bar = (19, 18, 14)
+    java_bar = java[4], java[4+6], java[4+12]
 
     plt.subplot(2, 3, 5)
     # Plotting
@@ -159,11 +158,11 @@ def plot_bar_chart():
     # ===================================================plot 6=========================================================
     # Data on X-axis
     # Specify the values of blue bars (height)
-    networkx_bar = (1, 2, 3)
+    networkx_bar = nx[5], nx[5+6], nx[5+12]
     # Specify the values of orange bars (height)
-    python_bar = (23, 25, 17)
+    python_bar = py[5], py[5+6], py[5+12]
     # Specify the values of green bars (height)
-    java_bar = (19, 18, 14)
+    java_bar = java[5], java[5+6], java[5+12]
 
     plt.subplot(2, 3, 6)
     # Plotting

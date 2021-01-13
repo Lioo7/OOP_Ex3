@@ -109,6 +109,8 @@ class GraphAlgo(GraphAlgoInterface):
         Notes:
         If the graph is None or id1 is not in the graph, the function should return an empty list []
         """
+        if id1 not in self.graph.nodes:
+            return []
 
         scc = self.bfs(id1)
         scc = scc & (self.bfs(id1, in_edges=False))
