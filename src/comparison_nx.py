@@ -6,7 +6,7 @@ from GraphAlgo import GraphAlgo
 
 
 class compare_nx:
-    """-------------------- Graph-builder --------------------"""
+    """--------------------- Graph-builder ---------------------"""
     @staticmethod
     def load_from_json(filename: str):
         gr = nx.DiGraph()
