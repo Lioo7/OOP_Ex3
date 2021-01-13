@@ -58,5 +58,8 @@ The Graph_Algo object contains a graph to activate the algorithms on.<br/>
 * is_numeric - The method gets a string and checks if its contains a number.<br/>
 
 
-
+ ## Sources ##
+ * https://www.softwaretestinghelp.com/dijkstras-algorithm-in-java/
+ * https://www.coursera.org/lecture/advanced-data-structures/core-dijkstras-algorithm-2ctyF
+ * https://en.wikipedia.org/wiki/Directed_graph
 
