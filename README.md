@@ -13,7 +13,7 @@ We used two interfaces to implement the graph properties and we implemented the 
 ## Illustration :
 
 
-![](https://miro.medium.com/max/1408/1*fYKrGW0IUeoS_8XtCoNaLw.gif)
+![](https://miro.medium.com/max/1228/1*OUqMXd2jmLprCqWULLll8w.gif)
 
 
 ## Data Structures:
