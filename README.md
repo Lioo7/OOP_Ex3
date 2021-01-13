@@ -1,11 +1,22 @@
 # OOP_Ex3
-## Ex3 : directed & Weighted Graphs - python
+## Ex3 : Weighted Directed Graph Python Implementation - python
+![alt text](https://i.ibb.co/FH3J4FM/LOGO.jpg)
+
+## This project was made during our OOP course at Ariel University in the Department of Computer Science, 2021.
+
+### Project site: https://github.com/ElhaiMansbach/OOP_Ex3.git
+
+### Made by: Elhai Mansbach & Lioz Akirav.
+
 **In this project we implemented a weighted directed graph accompanied by different graphs algorithms in Python.<br/>
 We used two interfaces to implement the graph properties and we implemented the graph by three classes.<br/>**
+
 ## Data Structures:
+
 ### NodeData:<br/>
 This class represents the set of operations applicable on a node in an directed weighted graph.<br/>
 Each node has a unique key plus four additional node fields (weight, position , tag and information) that were used only during the algorithms.<br/>
+
 ### DiGraph:<br/>
 *The GraphInterface interface is implemented in DiGraph class:*<br/>
 This class represents an directional weighted graph.<br/>
@@ -15,6 +26,7 @@ There are functions for adding / removing nodes and edges, getting the node data
 obtaining the amount of nodes / edges there are in the graph, obtaining dictionary of all the nodes in the graph,<br/>
 obtaining dictionary of all the nodes connected to (into) node_id,obtaining dictionary of all the nodes connected from node_id,<br/>
 obtaining the amount of actions done on the graph (saved as mc).<br/>
+
 ### GraphAlgo:<br/>
 *The GraphAlgoInterface interface is implemented in GraphAlgo class:*<br/>
 The Graph_Algo object contains a graph to activate the algorithms on.<br/>
