@@ -29,7 +29,7 @@ if __name__ == '__main__':
     """-------------------- Shortest_path comparison --------------------"""
 
     json_graph = ['../data/G_10_80_1.json', '../data/G_100_800_1.json', '../data/G_1000_8000_1.json',
-                  '../data/G_10000_7884180000_1.json', '../data/G_200001_1600001_1.json', '../data/G_30000_240000_1.json']
+                  '../data/G_10000_80000_1.json', '../data/G_20000_160000_1.json', '../data/G_30000_240000_1.json']
     i = 1
     for f in json_graph:
         print('----- test', i, ': Shortest_path comparison -----')
@@ -56,8 +56,6 @@ if __name__ == '__main__':
 
     """-------------------- Connected_component comparison --------------------"""
 
-    json_graph = ['../data/G_10_80_1.json', '../data/G_100_800_1.json', '../data/G_1000_8000_1.json',
-                  '../data/G_10000_7884180000_1.json', '../data/G_200001_1600001_1.json', '../data/G_30000_240000_1.json']
     i = 1
     for f in json_graph:
         print('----- test', i, ': Connected_component (Id_scc) -----')
@@ -76,8 +74,7 @@ if __name__ == '__main__':
 
     """-------------------- Connected_components comparison --------------------"""
 
-    json_graph = ['../data/G_10_80_1.json', '../data/G_100_800_1.json', '../data/G_1000_8000_1.json',
-                  '../data/G_10000_7884180000_1.json', '../data/G_200001_1600001_1.json', '../data/G_30000_240000_1.json']
+
     i = 1
     for f in json_graph:
         print('----- test', i, ': Connected_componentS (ALL_scc) -----')
