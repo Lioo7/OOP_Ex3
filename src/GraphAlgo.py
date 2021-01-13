@@ -1,4 +1,5 @@
 import heapq
+import itertools
 import json
 import math
 from typing import List
@@ -11,6 +12,8 @@ from src import GraphInterface
 from src.GraphAlgoInterface import GraphAlgoInterface
 from matplotlib import pyplot as plt
 from random import uniform
+
+
 
 
 class GraphAlgo(GraphAlgoInterface):
@@ -89,8 +92,8 @@ class GraphAlgo(GraphAlgoInterface):
         More info:
         https://en.wikipedia.org/wiki/Dijkstra's_algorithm
         """
-
-        if id1 not in self.graph.get_all_v().keys() or id2 not in self.graph.get_all_v().keys():
+        keys = self.graph.get_all_v().keys()
+        if id1 not in keys or id2 not in keys:
             return float('inf'), []
 
         if id1 == id2:
@@ -106,11 +109,10 @@ class GraphAlgo(GraphAlgoInterface):
         Notes:
         If the graph is None or id1 is not in the graph, the function should return an empty list []
         """
-        if self.graph is None or id1 not in self.graph.nodes.keys():
-            return []
-        in_bfs = self.bfs(id1)
-        out_bfs = self.bfs(id1, inverted=True)
-        return list(out_bfs & in_bfs)
+
+        scc = self.bfs(id1)
+        scc = scc & (self.bfs(id1, in_edges=False))
+        return list(scc)
 
     def connected_components(self) -> List[list]:
         """
@@ -120,18 +122,24 @@ class GraphAlgo(GraphAlgoInterface):
         If the graph is None the function should return an empty list []
         """
         # If the graph is None, return an empty list []
+        """
+                Finds all the Strongly Connected Component(SCC) in the graph.
+                @return: The list all SCC
+                Notes:
+                If the graph is None the function should return an empty list []
+                """
+        # If the graph is None, return an empty list []
         if self.graph is None:
             return []
-        all_covered = []
+        flat_covered = []
         all_scc = []
         # Go over all the key's nodes in the graph
         for key in self.graph.get_all_v().keys():
             # the key is not in a scc yet
-            if key not in all_covered:
+            if key not in flat_covered:
                 scc_key = self.connected_component(key)
-                for node in scc_key:
-                    all_covered.append(node)
                 all_scc.append(scc_key)
+                flat_covered = list(itertools.chain(*all_scc))
         return all_scc
 
     def plot_graph(self) -> None:
@@ -206,11 +214,13 @@ class GraphAlgo(GraphAlgoInterface):
             node.set_weight(float('inf'))
 
     def dijkstra(self, src: int, dest: int) -> (float, list):
+        self.clear()
         prev = {src: -1}
-        """saves for each node the previous node"""
+        # """saves for each node the previous node"""
         dist = {i: math.inf for i in self.graph.get_all_v().keys()}
         """up date the dist"""
         dist[src] = 0
+        self.graph.get_node(src).set_tag(0)
         q = []
         heapq.heappush(q, (0, src))
         """saves for each node his min weight"""
@@ -249,19 +259,21 @@ class GraphAlgo(GraphAlgoInterface):
         except ValueError:
             return False
 
-    def bfs(self, src: int, inverted: bool = False) -> set:
-        q = [src]
-        visited = {src}
-        while q:
-            v = q.pop()
-            v_adjs = self.graph.all_out_edges_of_node(v).keys()\
-                if inverted else self.graph.all_in_edges_of_node(v).keys()
+    def bfs(self, src: int, in_edges: bool = True) -> set:
+        nodes_q = [src]
+        covered = {src}
+        while nodes_q:
+            node = nodes_q.pop()
+            if in_edges:
+                node_nei = self.graph.all_out_edges_of_node(node).keys()
+            else:
+                node_nei = self.graph.all_in_edges_of_node(node).keys()
 
-            for u in v_adjs:
-                if u not in visited:
-                    q.append(u)
-                    visited.add(u)
-        return visited
+            for adj_node in node_nei:
+                if adj_node not in covered:
+                    covered.add(adj_node)
+                    nodes_q.append(adj_node)
+        return covered
 
     def __eq__(self, other):
         return self.__graph == other.__graph

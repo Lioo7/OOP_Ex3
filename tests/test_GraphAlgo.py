@@ -81,8 +81,8 @@ class TestGraphAlgo(unittest.TestCase):
 
     def test_connected_component(self):
         self.assertEqual([1, 2, 3, 4], self.graph_algo.connected_component(1))
-        self.assertEqual([4, 1, 2, 3], self.graph_algo.connected_component(4))
-        self.assertEqual([5, 6, 8], self.graph_algo.connected_component(5))
+        self.assertEqual([1, 2, 3, 4], self.graph_algo.connected_component(4))
+        self.assertEqual([8, 5, 6], self.graph_algo.connected_component(5))
         self.assertEqual([7], self.graph_algo.connected_component(7))
         self.assertEqual([9, 10], self.graph_algo.connected_component(9))
         self.graph.add_edge(4, 6, 2)
@@ -90,31 +90,28 @@ class TestGraphAlgo(unittest.TestCase):
         self.assertEqual([1, 2, 3, 4, 5, 6, 8], self.graph_algo.connected_component(1))
         self.graph.add_edge(9, 7, 1)
         self.graph.add_edge(7, 10, 5)
-        self.assertEqual([10, 7, 9], self.graph_algo.connected_component(10))
+        self.assertEqual([9, 10, 7], self.graph_algo.connected_component(10))
         self.graph.remove_edge(1, 2)
         self.graph.remove_edge(1, 3)
         self.assertEqual([1], self.graph_algo.connected_component(1))
-        self.assertEqual([6, 2, 3, 4, 5, 8], self.graph_algo.connected_component(6))
+        self.assertEqual([2, 3, 4, 5, 6, 8], self.graph_algo.connected_component(6))
 
     def test_connected_components(self):
         self.assertIsNotNone(self.graph_algo.connected_components())
-        self.assertEqual([[1, 2, 3, 4], [5, 6, 8], [7], [9, 10]], self.graph_algo.connected_components())
+        self.assertEqual([[1, 2, 3, 4], [8, 5, 6], [7], [9, 10]], self.graph_algo.connected_components())
         self.graph.remove_edge(1, 3)
         self.graph.remove_edge(1, 2)
-        self.assertEqual([[1], [2, 3, 4], [5, 6, 8], [7], [9, 10]], self.graph_algo.connected_components())
+        self.assertEqual([[1], [2, 3, 4], [8, 5, 6], [7], [9, 10]], self.graph_algo.connected_components())
         self.graph.add_edge(1, 7, 3)
         self.graph.add_edge(7, 1, 5)
-        self.assertEqual([[1, 7], [2, 3, 4], [5, 6, 8], [9, 10]], self.graph_algo.connected_components())
+        self.assertEqual([[1, 7], [2, 3, 4], [8, 5, 6], [9, 10]], self.graph_algo.connected_components())
         self.graph.remove_edge(9, 10)
-        self.assertEqual([[1, 7], [2, 3, 4], [5, 6, 8], [9], [10]], self.graph_algo.connected_components())
+        self.assertEqual([[1, 7], [2, 3, 4], [8, 5, 6], [9], [10]], self.graph_algo.connected_components())
         self.assertEqual(5, len(self.graph_algo.connected_components()))
 
     def test_plot_graph(self):
         self.graph_algo.load_from_json('../data/G_100_800_1.json')
         self.graph_algo.plot_graph()
-
-    def test_shortest_path_distance(self):
-        self.assertEqual(1.5, self.graph_algo.shortest_path_distance(1, 2))
 
     def test_is_numeric(self):
         self.assertTrue(self.graph_algo.is_numeric("1"))
