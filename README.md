@@ -1,5 +1,4 @@
 # OOP_Ex3
-## Ex3 : Weighted Directed Graph Python Implementation - python
 ![alt text](https://i.ibb.co/MpFkXKD/LOGO-1.jpg)
 
 ## This project was made during our OOP course at Ariel University in the Department of Computer Science, 2021.
