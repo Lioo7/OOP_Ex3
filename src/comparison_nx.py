@@ -6,6 +6,7 @@ from GraphAlgo import GraphAlgo
 
 
 class compare_nx:
+    """-------------------- Graph-builder --------------------"""
     @staticmethod
     def load_from_json(filename: str):
         gr = nx.DiGraph()
@@ -22,6 +23,9 @@ class compare_nx:
 
 
 if __name__ == '__main__':
+    nx_results = []  # contains the result (in sec) of all the functions in networkx (Short|Component|Components)
+    py_results = []  # contains the result (in sec) of all the functions in python (Short|Component|Components)
+
     """-------------------- Shortest_path comparison --------------------"""
 
     json_graph = ['../data/G_10_80_1.json', '../data/G_100_800_1.json', '../data/G_1000_8000_1.json',
@@ -37,13 +41,17 @@ if __name__ == '__main__':
         time_start = time.time()
         list_nx = nx.shortest_path(graph_nx, 1, 5, weight='weight')
         time_end = time.time()
-        print('Time_nx:', time_end - time_start)
+        delta = time_end - time_start
+        nx_results.append(delta)
+        print('Time_nx:', delta)
         print('graph_nx: ', list_nx)
 
         time_start = time.time()
         graph_algo.shortest_path(1, 5)
         time_end = time.time()
-        print('Time_python:', time_end - time_start)
+        delta = time_end - time_start
+        py_results.append(delta)
+        print('Time_python:', delta)
         print('graph_algo:', graph_algo.shortest_path(1, 5), '\n')
 
     """-------------------- Connected_component comparison --------------------"""
@@ -60,7 +68,11 @@ if __name__ == '__main__':
         time_start = time.time()
         graph_algo.connected_component(3)
         time_end = time.time()
-        print('Time_python:', time_end - time_start, '\n')
+        delta = time_end - time_start
+        py_results.append(delta)
+        print('Time_python:', delta, '\n')
+
+        nx_results.append(0)  # Connected_component does not exist in nx -> always zero
 
     """-------------------- Connected_components comparison --------------------"""
 
@@ -77,9 +89,13 @@ if __name__ == '__main__':
         time_start = time.time()
         list_nx = nx.kosaraju_strongly_connected_components(graph_nx)
         time_end = time.time()
-        print('Time_nx:', time_end - time_start)
+        delta = time_end - time_start
+        nx_results.append(delta)
+        print('Time_nx:', delta)
 
         time_start = time.time()
         graph_algo.connected_components()
         time_end = time.time()
-        print('Time_python:', time_end - time_start, '\n')
+        delta = time_end - time_start
+        py_results.append(delta)
+        print('Time_python:', delta, '\n')
