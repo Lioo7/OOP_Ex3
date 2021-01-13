@@ -66,10 +66,8 @@ The Graph_Algo object contains a graph to activate the algorithms on.<br/>
 ## Tests:
 
 This ptoject includes two unittest files :
-
-test_DiGraph - Testing DiGraph class's functions.
-
-test_GraphAlgo - Testing GraphAlgo class's functions.
+* test_DiGraph - Testing DiGraph class's functions.
+* test_GraphAlgo - Testing GraphAlgo class's functions.
 
 
  ## Sources ##
