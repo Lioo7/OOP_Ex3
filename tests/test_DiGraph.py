@@ -296,8 +296,8 @@ class TestDiGraph(unittest.TestCase):
         Expected: 14
         """
         self.g.remove_edge(2, 3)  # +1
-        self.g.remove_node(1)  # +5
-        self.assertEqual(14, self.g.get_mc())
+        self.g.remove_node(1)  # +1
+        self.assertEqual(10, self.g.get_mc())
         self.assertEqual(2, self.g.v_size())
         self.assertEqual(0, self.g.e_size())
 

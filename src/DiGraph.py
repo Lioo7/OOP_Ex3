@@ -114,12 +114,12 @@ class DiGraph(GraphInterface):
             # Go through the list of all the nodes that have an edge to node_id
             for i in self.Neighbors_in.get(node_id):
                 del self.Neighbors_in[i][node_id]
-                self.mc += 1
+                # self.mc += 1
                 self.count_edges -= 1
             # Go through the list of all the nodes that have an edge from node_id
             for i in self.Neighbors_out.get(node_id):
                 del self.Neighbors_out[i][node_id]
-                self.mc += 1
+                # self.mc += 1
                 self.count_edges -= 1
 
             del self.nodes[node_id]
