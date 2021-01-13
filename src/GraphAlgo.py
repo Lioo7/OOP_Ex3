@@ -1,6 +1,12 @@
+import heapq
 import json
+import math
+import queue
 from queue import PriorityQueue
 from typing import List
+
+from numpy.ma.bench import yl
+
 from DiGraph import DiGraph
 from NodeData import NodeData
 from src import GraphInterface
@@ -68,7 +74,7 @@ class GraphAlgo(GraphAlgoInterface):
                 json.dump(json_graph, write_file)
             return True
         except Exception as e:
-            print("Exception: ",e)
+            print("Exception: ", e)
             return False
         finally:
             write_file.close()
@@ -79,38 +85,20 @@ class GraphAlgo(GraphAlgoInterface):
         @param id1: The start node id
         @param id2: The end node id
         @return: The distance of the path, the path as a list
+        More info:
         Notes:
         If there is no path between id1 and id2, or one of them dose not exist the function returns (float('inf'),[])
         More info:
         https://en.wikipedia.org/wiki/Dijkstra's_algorithm
         """
-        # Checking if the keys exist
-        if id1 not in self.graph.nodes.keys() or id2 not in self.graph.nodes.keys():
+
+        if id1 not in self.graph.get_all_v().keys() or id2 not in self.graph.get_all_v().keys():
             return float('inf'), []
+
         if id1 == id2:
-            return float('inf'), []
-        if self.shortest_path_distance(id1, id2) == -1:
-            return float('inf'), []
+            return 0, []
 
-        """
-        Calls the dijkstra method to check if there exists a pathway between both of the given nodes.
-        If the dijkstra function returned a positive number, then adds all the numbers in the info of
-        the destination node to the list (by calling isNumeric method).
-        Then adds the destination node to the list and returns the path.
-        """
-        path = []
-        distance = self.shortest_path_distance(id1, id2)
-        if distance > -1:
-            destination = self.graph.get_node(id2)
-            string = destination.get_info()
-            arr = string.split("->")
-            for temp in arr:
-                if self.is_numeric(temp):
-                    key = int(temp)
-                    path.append(key)
-
-            path.append(id2)
-            return distance, path
+        return self.dijkstra(id1, id2)
 
     def connected_component(self, id1: int) -> list:
         """
@@ -120,18 +108,11 @@ class GraphAlgo(GraphAlgoInterface):
         Notes:
         If the graph is None or id1 is not in the graph, the function should return an empty list []
         """
-        # If the graph is None or id1 is not in the graph, return an empty list []
-
         if self.graph is None or id1 not in self.graph.nodes.keys():
             return []
-        ssc = [id1]
-        # Go over all the key's nodes in the graph
-        for key in self.graph.get_all_v().keys():
-            # If there is a path between id1 to key and also to the opposite direction
-            if id1 != key and self.shortest_path_distance(id1, key) != -1 and \
-                    self.shortest_path_distance(key, id1) != -1:
-                ssc.append(key)
-        return ssc
+        in_bfs = self.bfs(id1)
+        out_bfs = self.bfs(id1, inverted=True)
+        return list(out_bfs & in_bfs)
 
     def connected_components(self) -> List[list]:
         """
@@ -144,13 +125,11 @@ class GraphAlgo(GraphAlgoInterface):
         if self.graph is None:
             return []
         all_covered = []
-        # Resets all the tags to zero
-        for key in self.graph.get_all_v().keys():
-            self.graph.get_node(key).set_tag(0)
         all_scc = []
         # Go over all the key's nodes in the graph
         for key in self.graph.get_all_v().keys():
-            if key not in all_covered:  # the key is not in a scc yet
+            # the key is not in a scc yet
+            if key not in all_covered:
                 scc_key = self.connected_component(key)
                 for node in scc_key:
                     all_covered.append(node)
@@ -228,82 +207,36 @@ class GraphAlgo(GraphAlgoInterface):
             node.set_tag(0)
             node.set_weight(float('inf'))
 
-    def dijkstra(self, source):
-        """
-        The Dijkstra's algorithm is an algorithm for finding the shortest paths between nodes in a graph.
-        For a given source node in the graph, the algorithm finds the shortest path between that node and every other.
-        :param source: the source node
-        :return: None
-        """
+    def dijkstra(self, src: int, dest: int) -> (float, list):
+        prev = {src: -1}
+        """saves for each node the previous node"""
+        dist = {i: math.inf for i in self.graph.get_all_v().keys()}
+        """up date the dist"""
+        dist[src] = 0
+        q = []
+        heapq.heappush(q, (0, src))
+        """saves for each node his min weight"""
+        while q:
+            v = heapq.heappop(q)[1]
+            for ni, w in self.graph.all_out_edges_of_node(v).items():
+                if dist[ni] > dist[v] + w:
+                    dist[ni] = dist[v] + w
+                    prev[ni] = v
+                    heapq.heappush(q, (dist[ni], ni))
+                    """push to the queue the new distance and the node_key"""
+            if v == dest:
+                break
 
-        # Clears the graph
-        self.clear()
+        if dist[dest] == math.inf:
+            """there is no path"""
+            return float('inf'), []
+        path = []
+        p = dest
 
-        # Sets the source node values to zero
-        src = self.graph.get_node(source)
-        src.set_tag(0)
-        src.set_weight(0)
-
-        # Creates a priority queue which will contain the nodes that need to traverse.
-        # The priority queue ranks the nodes by their tag values from the greater to the lesser.
-        pq = PriorityQueue(maxsize=self.graph.v_size())
-        pq.put((src.get_tag(), src))
-
-        """
-        While the p.queue is not empty, the algorithm takes the first node marks it and traverses
-        all its neighbors(all the destinations of the node).
-        If this neighbor is not yet visited it calculates its distance from the source.
-        If its distance is smaller than its tag value, then sets its tag to be distance
-        and set its info to contain the path from the source till this node. Then adds this node to the p.queue.
-        After the algorithm finishes gaining with all the neighbors, it continues to the next node in the p.queue.
-        """
-        while not pq.empty():
-            curr_node = pq.get()[1]
-            curr_weight = curr_node.get_weight()
-            # If the node has not been visited yet
-            if curr_node.get_tag() == 0:
-                neighbors = self.graph.all_out_edges_of_node(curr_node.get_key())
-                for neighbor in neighbors:
-                    # edge_weight = self.graph.all_out_edges_of_node(curr_node.get_key()[neighbor])
-                    edge_weight = neighbors.get(neighbor)
-                    distance = edge_weight
-                    nei = self.graph.get_node(neighbor)
-                    if curr_weight + distance < nei.get_weight():
-                        nei.set_weight(curr_weight + distance)
-                        key = str(curr_node.get_key())
-                        nei.set_info(curr_node.get_info() + "->" + key)
-                        if nei.get_tag() == 0:
-                            pq.put((nei.get_tag(), nei))
-
-            curr_node.set_tag(1)  # marked
-
-    def shortest_path_distance(self, id1: int, id2: int) -> float:
-        """
-        The method returns the shortest distance between two given nodes.
-        :param id1: start node.
-        :param id2: end (target) node.
-        :return: the length of the shortest path between src to dest, if no such path --> returns -1.
-        """
-        # Checks if both of the keys exist in the graph
-        if id1 not in self.graph.get_all_v().keys() or id2 not in self.graph.get_all_v().keys():
-            return -1
-
-        # Checks if both of the keys are equal
-        if id1 == id2:
-            return 0
-
-        source = NodeData(id1)
-        destination = self.graph.get_node(id2)
-        infinity = float('inf')
-
-        # Calls dijkstra function
-        self.dijkstra(id1)
-
-        # returns the tag of the destination only if its distance is lower than infinity
-        if destination.get_weight() < infinity:
-            return destination.get_weight()
-        else:
-            return -1
+        while p != -1:
+            path.insert(0, p)
+            p = prev[p]
+        return dist[dest], path
 
     @staticmethod
     def is_numeric(string):
@@ -317,3 +250,20 @@ class GraphAlgo(GraphAlgoInterface):
             return True
         except ValueError:
             return False
+
+    def bfs(self, src: int, inverted: bool = False) -> set:
+        q = [src]
+        visited = {src}
+        while q:
+            v = q.pop()
+            v_adjs = self.graph.all_out_edges_of_node(v).keys()\
+                if inverted else self.graph.all_in_edges_of_node(v).keys()
+
+            for u in v_adjs:
+                if u not in visited:
+                    q.append(u)
+                    visited.add(u)
+        return visited
+
+    def __eq__(self, other):
+        return self.__graph == other.__graph

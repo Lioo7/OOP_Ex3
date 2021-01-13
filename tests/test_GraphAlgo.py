@@ -52,7 +52,7 @@ class TestGraphAlgo(unittest.TestCase):
         print(self.g1.get_graph())
 
         self.g2 = GraphAlgo()
-        self.assertTrue(self.g2.load_from_json('../data/A4'))
+        self.assertTrue(self.g2.load_from_json('../data/A5'))
         print(self.g2.get_graph())
 
         self.g3 = GraphAlgo()
@@ -66,7 +66,7 @@ class TestGraphAlgo(unittest.TestCase):
         self.assertEqual((3, [9, 10]), self.graph_algo.shortest_path(9, 10))
         self.assertEqual((float('inf'), []), self.graph_algo.shortest_path(1, 10))
         self.assertEqual((float('inf'), []), self.graph_algo.shortest_path(-2, 1))
-        self.assertEqual((float('inf'), []), self.graph_algo.shortest_path(7, 7))
+        self.assertEqual((0, []), self.graph_algo.shortest_path(7, 7))
         self.assertEqual((float('inf'), []), self.graph_algo.shortest_path(1, 11))
         self.assertEqual((float('inf'), []), self.graph_algo.shortest_path(0, -5))
         self.graph.add_edge(4, 6, 1)
@@ -110,6 +110,7 @@ class TestGraphAlgo(unittest.TestCase):
         self.assertEqual(5, len(self.graph_algo.connected_components()))
 
     def test_plot_graph(self):
+        self.graph_algo.load_from_json('../data/G_100_800_1.json')
         self.graph_algo.plot_graph()
 
     def test_shortest_path_distance(self):

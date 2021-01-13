@@ -158,3 +158,7 @@ class DiGraph(GraphInterface):
                 edges.append({"src": src, "w": w, "dest":dest})
         s = "Edges={}\nNodes=[{}]\n".format(edges, self.nodes)
         return s
+
+    # def __eq__(self, other):
+    #     return self.__nodes == other.__nodes and self.__neighbors == other.__neighbors
+
