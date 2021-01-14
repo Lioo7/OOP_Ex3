@@ -5,7 +5,7 @@
 
 ### Project site: https://github.com/ElhaiMansbach/OOP_Ex3.git
 
-### Made by: Elhai Mansbach & Lioz Akirav.
+### Made by :student:	: Elhai Mansbach & Lioz Akirav.
 
 **In this project is about implementing data structure and algorithms in a weighted directed graph accompanied by different graphs algorithms in Python.<br/>
 We used two interfaces to implement the graph properties and we implemented the graph by three classes.<br/>**
