@@ -33,7 +33,10 @@ if __name__ == '__main__':
 
     nx_results = []  # contains the result (in sec) of all the functions in networkx (Short|Component|Components)
     py_results = []  # contains the result (in sec) of all the functions in python (Short|Component|Components)
-    java_results = []  # contains the result (in sec) of all the functions in java (Short|Component|Components)
+    # contains the result (in sec) of all the functions in java (Short|Component|Components)
+    java_results = [0.0024046, 0.0020393, 0.0286995, 0.3990609, 0.5003517, 0.2987889,
+                    0.0001906, 0.000615, 0.0005584, 0.0255793, 0.0330737, 0.0009482,
+                    0.0001255, 0.00016747, 0.0255405, 0.2244528, 0.757112, 0.9485512]
 
     for x in range(0, iterations):
         print("-------------------iteration number", x, "----------------------")
@@ -115,9 +118,6 @@ if __name__ == '__main__':
         print('----- results -----')
         print("nx_results:", nx_results)
         print("py_results:", py_results)
-        for i in range(0, 18):
-            time = (nx_results[i] + py_results[i]) / 2
-            java_results.append(time)
         print("java_results:", java_results)
 
         # calculates the sum of results so far
