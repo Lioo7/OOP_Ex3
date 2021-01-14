@@ -81,7 +81,7 @@ This ptoject includes two unittest files :
 
 
 
- ## Sources ##
+ ## Sources:
  * https://www.softwaretestinghelp.com/dijkstras-algorithm-in-java/
  * https://www.coursera.org/lecture/advanced-data-structures/core-dijkstras-algorithm-2ctyF
  * https://en.wikipedia.org/wiki/Directed_graph
