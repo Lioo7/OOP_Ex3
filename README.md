@@ -49,28 +49,36 @@ The class includes these functions:
 The Graph_Algo object contains a graph to activate the algorithms on.<br/>
 
 **This class represents the Graph Theory algorithms including these functions:**<br/>
-* __init__ - Initialize the graphh<br/>
-* get_graph - Returns the underlying graph of which this class works<br/>
-* shortest_path - Returns the shortest path and distance from node id1 to node id2.<br/>
-* connected_component - Finds the Strongly Connected Component(SCC) that node id1 is a part of.<br/>
-* connected_components - Finds all the Strongly Connected Component(SCC) in the graph.<br/>
-* save_to_json - Saves this weighted directed graph to the given file name - in JSON format.<br/>
-* load_from_json - Loads the graph from the file.<br/>
-* plot_graph - Plots the graph.<br/>
+| function | Description |
+| --- | --- |
+| __init__ | Initialize the graphh |
+| get_graph | Returns the underlying graph of which this class works |
+| shortest_path | Returns the shortest path and distance from node id1 to node id2. |
+| connected_component | Finds the Strongly Connected Component(SCC) that node id1 is a part of |
+| connected_components | Finds all the Strongly Connected Component(SCC) in the graph |
+| save_to_json | Saves this weighted directed graph to the given file name - in JSON format |
+| load_from_json | Loads the graph from the file |
+| plot_graph | Plots the graph |
+
 
 **This class also include these private functions:**<br/>
-* clear - PClears the graph and initializes all the nodes in the graph to their default values.<br/>
-* dijkstra - Algorithm for finding the shortest paths between nodes in a graph.<br/>
-* shortest_path_distance - Returns the shortest distance between two given nodes.<br/>
-* is_numeric - The method gets a string and checks if its contains a number.<br/>
+| function | Description |
+| --- | --- |
+| clear | PClears the graph and initializes all the nodes in the graph to their default values |
+| dijkstra | Algorithm for finding the shortest paths between nodes in a graph |
+| shortest_path_distance | Returns the shortest distance between two given nodes |
+| is_numeric | The method gets a string and checks if its contains a number |
 
 
 
 ## Tests:
 
 This ptoject includes two unittest files :
-* test_DiGraph - Testing DiGraph class's functions.
-* test_GraphAlgo - Testing GraphAlgo class's functions.
+| Test name | Description |
+| --- | --- |
+| test_DiGraph | Testing DiGraph class's functions |
+| test_GraphAlgo | Testing GraphAlgo class's functions |
+
 
 
  ## Sources ##
