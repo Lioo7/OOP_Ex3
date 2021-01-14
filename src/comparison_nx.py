@@ -43,7 +43,7 @@ def run_simulation():
         delta = time_end - time_start
         py_results.append(delta)
         print('Time_python:', delta)
-        print('graph_algo:', graph_algo.shortest_path(1, 5), '\n')
+        print('graph_algo:', graph_algo.shortest_path(src, dest), '\n')
 
     """-------------------- Connected_component comparison --------------------"""
 
@@ -121,7 +121,7 @@ if __name__ == '__main__':
     py_results_total = 18 * [0]  # contains the result(in sec) of all the funcs in python(Short|Component|Components)
     java_results_total = 18 * [0]  # contains the result(in sec) of all the funcs in java(Short|Component|Components)
 
-    iterations = 10
+    iterations = 1
     for current_iteration in range(1, iterations + 1):
         print("-------------------iteration number", current_iteration, "----------------------")
         temp = run_simulation()
