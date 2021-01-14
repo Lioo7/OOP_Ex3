@@ -271,6 +271,12 @@ class GraphAlgo(GraphAlgoInterface):
             return False
 
     def bfs(self, src: int, in_edges: bool = True) -> set:
+        """"
+        Traverse the graph using BFS algorithm
+        :param src: the starting node
+        :param in_edges: if True, traverse the transposed graph
+        :return: a set of all nodes that been visited during the BFS travers
+        """
         nodes_q = [src]
         covered = {src}
         while nodes_q:

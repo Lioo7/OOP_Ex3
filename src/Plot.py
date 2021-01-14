@@ -44,7 +44,7 @@ def plot_bar_chart(nx: dict, py: dict, java: dict):
     # plt.xticks()
     # First argument - A list of positions at which ticks should be placed
     # Second argument -  A list of labels to place at the given locations
-    plt.xticks(ind + width / 2, ('Shortest path', 'Connected component', 'Connected components'), fontsize=fontsize, fontweight='bold')
+    plt.xticks(ind + width / 2, ('Shortest path', 'C.component', 'C.components'), fontsize=fontsize, fontweight='bold')
 
     # Finding the best position for legends and putting it
     plt.legend(loc='best')
@@ -71,7 +71,7 @@ def plot_bar_chart(nx: dict, py: dict, java: dict):
     # plt.xticks()
     # First argument - A list of positions at which ticks should be placed
     # Second argument -  A list of labels to place at the given locations
-    plt.xticks(ind + width / 2, ('Shortest path', 'Connected component', 'Connected components'), fontsize=fontsize, fontweight='bold')
+    plt.xticks(ind + width / 2, ('Shortest path', 'C.component', 'C.components'), fontsize=fontsize, fontweight='bold')
 
     # Finding the best position for legends and putting it
     plt.legend(loc='best')
@@ -97,7 +97,7 @@ def plot_bar_chart(nx: dict, py: dict, java: dict):
     # plt.xticks()
     # First argument - A list of positions at which ticks should be placed
     # Second argument -  A list of labels to place at the given locations
-    plt.xticks(ind + width / 2, ('Shortest path', 'Connected component', 'Connected components'), fontsize=fontsize, fontweight='bold')
+    plt.xticks(ind + width / 2, ('Shortest path', 'C.component', 'C.components'), fontsize=fontsize, fontweight='bold')
 
     # Finding the best position for legends and putting it
     plt.legend(loc='best')
@@ -118,13 +118,13 @@ def plot_bar_chart(nx: dict, py: dict, java: dict):
     plt.bar(ind + 2 * width, java_bar, width, label='Java')
 
     # plt.xlabel('Here goes x-axis label')
-    plt.ylabel('Run time(in sec)', fontsize=1.5 * fontsize)
+    plt.ylabel('Run time(in sec)', fontsize=1.5 * fontsize, fontweight='bold')
     plt.title('Graph #4: |V|=10,000, |E|=80,000', fontweight='bold')
 
     # plt.xticks()
     # First argument - A list of positions at which ticks should be placed
     # Second argument -  A list of labels to place at the given locations
-    plt.xticks(ind + width / 2, ('Shortest path', 'Connected component', 'Connected components'), fontsize=fontsize, fontweight='bold')
+    plt.xticks(ind + width / 2, ('Shortest path', 'C.component', 'C.components'), fontsize=fontsize, fontweight='bold')
 
     # Finding the best position for legends and putting it
     plt.legend(loc='best')
@@ -151,7 +151,7 @@ def plot_bar_chart(nx: dict, py: dict, java: dict):
     # plt.xticks()
     # First argument - A list of positions at which ticks should be placed
     # Second argument -  A list of labels to place at the given locations
-    plt.xticks(ind + width / 2, ('Shortest path', 'Connected component', 'Connected components'), fontsize=fontsize, fontweight='bold')
+    plt.xticks(ind + width / 2, ('Shortest path', 'C.component', 'C.components'), fontsize=fontsize, fontweight='bold')
 
     # Finding the best position for legends and putting it
     plt.legend(loc='best')
@@ -177,7 +177,7 @@ def plot_bar_chart(nx: dict, py: dict, java: dict):
     # plt.xticks()
     # First argument - A list of positions at which ticks should be placed
     # Second argument -  A list of labels to place at the given locations
-    plt.xticks(ind + width / 2, ('Shortest path', 'Connected component', 'Connected components'), fontsize=fontsize, fontweight='bold')
+    plt.xticks(ind + width / 2, ('Shortest path', 'C.component', 'C.components'), fontsize=fontsize, fontweight='bold')
 
     # Finding the best position for legends and putting it
     plt.legend(loc='best')
