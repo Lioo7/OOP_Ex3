@@ -111,8 +111,12 @@ class TestGraphAlgo(unittest.TestCase):
         self.assertEqual(5, len(self.graph_algo.connected_components()))
 
     def test_plot_graph(self):
+        self.graph_algo.load_from_json('../data/G_10_80_1.json')
         # self.graph_algo.load_from_json('../data/G_100_800_1.json')
-        print(self.graph)
+        # self.graph_algo.load_from_json('../data/G_1000_8000_1.json')
+        # self.graph_algo.load_from_json('../data/G_10000_80000_1.json')
+        # self.graph_algo.load_from_json('../data/G_20000_160000_1.json')
+        # self.graph_algo.load_from_json('../data/G_30000_240000_1.json')
         self.graph_algo.plot_graph()
 
     def test_is_numeric(self):

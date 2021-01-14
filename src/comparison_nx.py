@@ -89,10 +89,10 @@ def run_simulation():
         py_results.append(delta)
         print('Time_python:', delta, '\n')
 
-    print('----- results -----')
-    print("nx_results:", nx_results)
-    print("py_results:", py_results)
-    print("java_results:", java_results)
+    # print('----- results -----')
+    # print("nx_results:", nx_results)
+    # print("py_results:", py_results)
+    # print("java_results:", java_results)
 
     return nx_results, py_results, java_results
 
@@ -121,7 +121,7 @@ if __name__ == '__main__':
     py_results_total = 18 * [0]  # contains the result(in sec) of all the funcs in python(Short|Component|Components)
     java_results_total = 18 * [0]  # contains the result(in sec) of all the funcs in java(Short|Component|Components)
 
-    iterations = 3
+    iterations = 10
     for current_iteration in range(1, iterations + 1):
         print("-------------------iteration number", current_iteration, "----------------------")
         temp = run_simulation()
@@ -147,3 +147,8 @@ if __name__ == '__main__':
 
     # Plotting the results in a bar chart
     plot_bar_chart(nx_results_avg, py_results_avg, java_results_avg)
+
+    print('----- results -----')
+    print("nx_results:", nx_results_avg)
+    print("py_results:", py_results_avg)
+    print("java_results:", java_results_avg)
