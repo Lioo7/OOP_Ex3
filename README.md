@@ -28,17 +28,20 @@ This class represents a directional weighted graph.<br/>
 It supports over 10^6 vertices, with an average degree of 10.<br/>
 The nodes and the edges are implemented in a data structure – Dictionary.<br/>
 The class includes these functions:
-* v_size - Returns the number of vertices in this graph.
-* e_size - Returns the number of edges in this graph.
-* get_all_v - Returns a dictionary of all the nodes in the graph.
-* all_in_edges_of_node - Returns a dictionary of all the nodes connected to the given node_id.
-* all_out_edges_of_node - Returns a dictionary of all the nodes connected from the given node_id.
-* get_mc - Returns the number of changes made in the graph.
-* add_edge - Adds an edge to the graph.
-* add_node - Adds a node to the graph.
-* get_node - Gets a node's key and returns the NodeData.
-* remove_node - Removes a node from the graph.
-* remove_edge - Removes an edge from the graph.
+| function | Description |
+| --- | --- |
+| v_size |  Returns the number of vertices in this graph |
+| e_size | Returns the number of edges in this graph |
+| get_all_v | Returns a dictionary of all the nodes in the graph |
+| all_in_edges_of_node | Returns a dictionary of all the nodes connected to the given node_id |
+| all_out_edges_of_node | Returns a dictionary of all the nodes connected from the given node_id |
+| get_mc | Returns the number of changes made in the graph |
+| add_edge | Adds an edge to the graph |
+| add_node | Adds a node to the graph |
+| get_node | Gets a node's key and returns the NodeData |
+| remove_node | Removes a node from the graph |
+| remove_edge | Removes an edge from the graph |
+
 
 
 ### GraphAlgo:<br/>
