@@ -39,3 +39,7 @@ class NodeData:
 
     def __lt__(self, other):
         return self.tag < other.tag
+
+    def __eq__(self, other):
+        return self.key == other.key and self.weight == other.weight and self.pos == other.pos\
+            and self.info == other.info and self.tag == other.tag

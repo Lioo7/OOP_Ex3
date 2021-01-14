@@ -289,4 +289,4 @@ class GraphAlgo(GraphAlgoInterface):
         return covered
 
     def __eq__(self, other):
-        return self.__graph == other.__graph
+        return self.graph == other.graph

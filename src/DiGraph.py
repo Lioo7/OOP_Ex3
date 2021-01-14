@@ -159,5 +159,7 @@ class DiGraph(GraphInterface):
         return s
 
     def __eq__(self, other):
-        return self.__nodes == other.__nodes and self.__neighbors == other.__neighbors
+
+        return self.nodes == other.nodes and self.Neighbors_in == other.Neighbors_in\
+               and self.Neighbors_out == other.Neighbors_out and self.count_edges == other.count_edges
 
