@@ -2,6 +2,7 @@ import heapq
 import itertools
 import json
 import math
+from collections import deque
 from typing import List
 
 from numpy.ma.bench import yl
@@ -12,8 +13,6 @@ from src import GraphInterface
 from src.GraphAlgoInterface import GraphAlgoInterface
 from matplotlib import pyplot as plt
 from random import uniform
-
-
 
 
 class GraphAlgo(GraphAlgoInterface):
@@ -216,37 +215,49 @@ class GraphAlgo(GraphAlgoInterface):
             node.set_weight(float('inf'))
 
     def dijkstra(self, src: int, dest: int) -> (float, list):
-        self.clear()
-        prev = {src: -1}
-        # """saves for each node the previous node"""
-        dist = {i: math.inf for i in self.graph.get_all_v().keys()}
-        """up date the dist"""
-        dist[src] = 0
-        self.graph.get_node(src).set_tag(0)
+        # Set the distance to zero for our initial node
+        # and to infinity for other nodes.
+        distances = {node: math.inf for node in self.graph.get_all_v()}
+        distances[src] = 0
+        # Set a dictionary with the previous node of each node in the path
+        # and set the previous node of the source node to inf key (which not one of the nodes in the graph)
+        previous_nodes = {src: math.inf}
+        # Set a heap queue and insert the source node
         q = []
         heapq.heappush(q, (0, src))
-        """saves for each node his min weight"""
+
         while q:
-            v = heapq.heappop(q)[1]
-            for ni, w in self.graph.all_out_edges_of_node(v).items():
-                if dist[ni] > dist[v] + w:
-                    dist[ni] = dist[v] + w
-                    prev[ni] = v
-                    heapq.heappush(q, (dist[ni], ni))
-                    """push to the queue the new distance and the node_key"""
-            if v == dest:
+            # Select the unvisited node with the smallest distance,
+            # it's current node now.
+            curr_node = heapq.heappop(q)[1]
+            # Stop, if the smallest distance among the unvisited nodes is infinity.
+            if distances[curr_node] == math.inf:
                 break
-
-        if dist[dest] == math.inf:
-            """there is no path"""
+            # Find unvisited neighbors for the current node
+            # and calculate their distances through the current node.
+            edges = self.graph.all_out_edges_of_node(curr_node)
+            for neighbour in edges.keys():
+                alternative_route = distances[curr_node] + edges.get(neighbour)
+                # Compare the newly calculated distance to the assigned and save the smaller one.
+                if alternative_route < distances[neighbour]:
+                    distances[neighbour] = alternative_route
+                    previous_nodes[neighbour] = curr_node
+                    # Mark the current node as visited and push it the visited heap queue.
+                    heapq.heappush(q, (distances[neighbour], neighbour))
+                # If we have reached the destination node we done.
+                if curr_node == dest:
+                    break
+        # There is no path
+        if distances[dest] == math.inf:
             return float('inf'), []
-        path = []
-        p = dest
 
-        while p != -1:
-            path.insert(0, p)
-            p = prev[p]
-        return dist[dest], path
+        path, curr_node = [], dest
+        while curr_node != src:
+            path.insert(0, curr_node)  # append to left
+            curr_node = previous_nodes[curr_node]
+        if path:
+            path.insert(0, curr_node)
+        return distances[dest], path
 
     @staticmethod
     def is_numeric(string):
