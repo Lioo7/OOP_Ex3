@@ -11,7 +11,7 @@ def plot_bar_chart(nx: dict, py: dict, java: dict):
     # Numbers of pairs of bars you want
     N = 3
     # Font size
-    fontsize = 6.7
+    fontsize = 8
 
     # ===================================================plot 1=========================================================
     # Data on X-axis

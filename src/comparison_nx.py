@@ -121,7 +121,7 @@ if __name__ == '__main__':
     py_results_total = 18 * [0]  # contains the result(in sec) of all the funcs in python(Short|Component|Components)
     java_results_total = 18 * [0]  # contains the result(in sec) of all the funcs in java(Short|Component|Components)
 
-    iterations = 10
+    iterations = 1
     for current_iteration in range(1, iterations + 1):
         print("-------------------iteration number", current_iteration, "----------------------")
         temp = run_simulation()
@@ -152,3 +152,42 @@ if __name__ == '__main__':
     print("nx_results:", nx_results_avg)
     print("py_results:", py_results_avg)
     print("java_results:", java_results_avg)
+
+    short_total_nx = 0
+    short_total_py = 0
+    short_total_java = 0
+
+    for i in range(0, 6):
+        short_total_nx = short_total_nx + nx_results_avg[i]
+        short_total_py = short_total_py + py_results_avg[i]
+        short_total_java = short_total_java + java_results_avg[i]
+    print("short_total_nx:", short_total_nx)
+    print("short_total_py:", short_total_py)
+    print("short_total_java:", short_total_java)
+
+    cComponent_total_nx = 0
+    cComponent_total_py = 0
+    cComponent_total_java = 0
+
+    for i in range(6, 12):
+        cComponent_total_nx = cComponent_total_nx + nx_results_avg[i]
+        cComponent_total_py = cComponent_total_py + py_results_avg[i]
+        cComponent_total_java = cComponent_total_java + java_results_avg[i]
+
+    print("cComponent_total_nx:", cComponent_total_nx)
+    print("cComponent_total_py:", cComponent_total_py)
+    print("cComponent_total_java:", cComponent_total_java)
+
+    cComponents_total_nx = 0
+    cComponents_total_py = 0
+    cComponents_total_java = 0
+
+    for i in range(12, 18):
+        cComponents_total_nx = cComponents_total_nx + nx_results_avg[i]
+        cComponents_total_py = cComponents_total_py + py_results_avg[i]
+        cComponents_total_java = cComponents_total_java + java_results_avg[i]
+
+    print("cComponents_total_nx:", cComponents_total_nx)
+    print("cComponents_total_py:", cComponents_total_py)
+    print("cComponents_total_java:", cComponents_total_java)
+
