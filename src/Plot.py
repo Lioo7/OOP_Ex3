@@ -11,7 +11,7 @@ def plot_bar_chart(nx: dict, py: dict, java: dict):
     # Numbers of pairs of bars you want
     N = 3
     # Font size
-    fontsize = 8
+    fontsize = 9
 
     # ===================================================plot 1=========================================================
     # Data on X-axis
@@ -38,7 +38,7 @@ def plot_bar_chart(nx: dict, py: dict, java: dict):
     plt.bar(ind + 2 * width, java_bar, width, label='Java')
 
     # plt.xlabel('Here goes x-axis label')
-    plt.ylabel('Run time(in sec)', fontsize=1.5 * fontsize, fontweight='bold')
+    plt.ylabel('Run time(in sec)', fontsize=fontsize, fontweight='bold')
     plt.title('Graph #1: |V|=10, |E|=80', fontweight='bold')
 
     # plt.xticks()
@@ -65,7 +65,7 @@ def plot_bar_chart(nx: dict, py: dict, java: dict):
     plt.bar(ind + 2 * width, java_bar, width, label='Java')
 
     # plt.xlabel('Here goes x-axis label')
-    plt.ylabel('Run time(in sec)', fontsize=1.5 * fontsize, fontweight='bold')
+    plt.ylabel('Run time(in sec)', fontsize=fontsize, fontweight='bold')
     plt.title('Graph #2: |V|=100, |E|=800', fontweight='bold')
 
     # plt.xticks()
@@ -91,7 +91,7 @@ def plot_bar_chart(nx: dict, py: dict, java: dict):
     plt.bar(ind + 2 * width, java_bar, width, label='Java')
 
     # plt.xlabel('Here goes x-axis label')
-    plt.ylabel('Run time(in sec)', fontsize=1.5 * fontsize, fontweight='bold')
+    plt.ylabel('Run time(in sec)', fontsize=fontsize, fontweight='bold')
     plt.title('Graph #3: |V|=1,000, |E|=8,000', fontweight='bold')
 
     # plt.xticks()
@@ -118,7 +118,7 @@ def plot_bar_chart(nx: dict, py: dict, java: dict):
     plt.bar(ind + 2 * width, java_bar, width, label='Java')
 
     # plt.xlabel('Here goes x-axis label')
-    plt.ylabel('Run time(in sec)', fontsize=1.5 * fontsize, fontweight='bold')
+    plt.ylabel('Run time(in sec)', fontsize=fontsize, fontweight='bold')
     plt.title('Graph #4: |V|=10,000, |E|=80,000', fontweight='bold')
 
     # plt.xticks()
@@ -145,7 +145,7 @@ def plot_bar_chart(nx: dict, py: dict, java: dict):
     plt.bar(ind + 2 * width, java_bar, width, label='Java')
 
     # plt.xlabel('Here goes x-axis label')
-    plt.ylabel('Run time(in sec)', fontsize=1.5 * fontsize, fontweight='bold')
+    plt.ylabel('Run time(in sec)', fontsize=fontsize, fontweight='bold')
     plt.title('Graph #5: |V|=20,000, |E|=160,000', fontweight='bold')
 
     # plt.xticks()
@@ -171,7 +171,7 @@ def plot_bar_chart(nx: dict, py: dict, java: dict):
     plt.bar(ind + 2 * width, java_bar, width, label='Java')
 
     # plt.xlabel('Here goes x-axis label')
-    plt.ylabel('Run time(in sec)', fontsize=1.5 * fontsize, fontweight='bold')
+    plt.ylabel('Run time(in sec)', fontsize=fontsize, fontweight='bold')
     plt.title('Graph #6: |V|=30,000, |E|=2,400,000', fontweight='bold')
 
     # plt.xticks()

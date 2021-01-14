@@ -121,7 +121,7 @@ if __name__ == '__main__':
     py_results_total = 18 * [0]  # contains the result(in sec) of all the funcs in python(Short|Component|Components)
     java_results_total = 18 * [0]  # contains the result(in sec) of all the funcs in java(Short|Component|Components)
 
-    iterations = 1
+    iterations = 10
     for current_iteration in range(1, iterations + 1):
         print("-------------------iteration number", current_iteration, "----------------------")
         temp = run_simulation()
@@ -191,3 +191,26 @@ if __name__ == '__main__':
     print("cComponents_total_py:", cComponents_total_py)
     print("cComponents_total_java:", cComponents_total_java)
 
+    print("----------Results Table----------")
+    print("| Graph number | Networkx | Python | Java |")
+    print("| -- | --- | --- | --- |")
+    print("Function: Shortest graph")
+    for i in range(0, 6):
+        x = nx_results_avg[i]
+        y = py_results_avg[i]
+        z = java_results_avg[i]
+        print("|" + str(i+1) + "|" + str(x) + "|" + str(y) + "|" + str(z) + "|")
+
+    print("Function: Connected component")
+    for i in range(6, 12):
+        x = nx_results_avg[i]
+        y = py_results_avg[i]
+        z = java_results_avg[i]
+        print("|" + str(i+1-6) + "|" + str(x) + "|" + str(y) + "|" + str(z) + "|")
+
+    print("Function: Connected components")
+    for i in range(12, 18):
+        x = nx_results_avg[i]
+        y = py_results_avg[i]
+        z = java_results_avg[i]
+        print("|" + str(i+1-12) + "|" + str(x) + "|" + str(y) + "|" + str(z) + "|")
