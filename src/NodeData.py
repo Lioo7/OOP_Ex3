@@ -35,11 +35,12 @@ class NodeData:
         self.info = i
 
     def __repr__(self):
-        return "key:{} | weight:{} | pos:{} | tag:{} | info:{}".format(self.key, self.weight, self.pos, self.tag, self.info)
+        return "key:{} | weight:{} | pos:{} | tag:{} | info:{}".format(self.key, self.weight, self.pos, self.tag,
+                                                                       self.info)
 
     def __lt__(self, other):
         return self.tag < other.tag
 
     def __eq__(self, other):
-        return self.key == other.key and self.weight == other.weight and self.pos == other.pos\
-            and self.info == other.info and self.tag == other.tag
+        return self.key == other.key and self.weight == other.weight and self.pos == other.pos \
+               and self.info == other.info and self.tag == other.tag
