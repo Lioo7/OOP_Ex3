@@ -121,7 +121,7 @@ if __name__ == '__main__':
     py_results_total = 18 * [0]  # contains the result(in sec) of all the funcs in python(Short|Component|Components)
     java_results_total = 18 * [0]  # contains the result(in sec) of all the funcs in java(Short|Component|Components)
 
-    iterations = 3
+    iterations = 10
     for current_iteration in range(1, iterations + 1):
         print("-------------------iteration number", current_iteration, "----------------------")
         temp = run_simulation()
