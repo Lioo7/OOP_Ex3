@@ -7,8 +7,10 @@
 
 ### Made by :student:	: Elhai Mansbach & Lioz Akirav.
 
-**In this project is about implementing data structure and algorithms in a weighted directed graph accompanied by different graphs algorithms in Python.<br/>
-We used two interfaces to implement the graph properties and we implemented the graph by three classes.<br/>**
+The results of the data analysis can be viewed at the Wiki page [Wiki](https://github.com/Lioo7/OOP_Ex3-Implementing-NetworkX-library/wiki)
+
+**This project is about implementing data structure and algorithms in a weighted directed graph accompanied by different graph algorithms in Python.<br/>
+We used two interfaces to implement the graph properties and we implemented the graph in three classes.<br/>**
 
 ## Illustration :
 
