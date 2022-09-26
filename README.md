@@ -73,23 +73,23 @@ The Graph_Algo object contains a graph to activate the algorithms on.<br/>
 
 
 ## Algorithms:
- ## BFS Algorithm
+ ### BFS Algorithm
  * The Breadth-first search (BFS) is an algorithm for traversing or searching
    tree or graph data structures. It starts at the given node in the graph,
    and explores all the neighbor nodes at the present depth prior to moving on
    to the nodes at the next depth level.
  * Complexity: O(|V|+|E|).
  
-  ## Dijkstra Algorithm
-  * A famous algorithm for finding the shortest paths in a weighted positive graph.
-  *  The algorithm put the given vertex in the priority queue, priority queue sort the vertices by they tag value.
-     For each vertex we sum the current vertex's tag with his connected edge's weight.
-     Each time we poll vertex with the minimal value in the priority queue,
-     go over all its neighbors, select the neighbor with the minimal value and put it in the priority queue
-     mark all the vertex we passed.
-     If there is a path with a minimal weight we will discover it and select this path
-     each vertex we finished passing out of the priority queue.
-  * Complexity: O(|E|log|V| + |V|).
+ ### Dijkstra Algorithm
+ * A famous algorithm for finding the shortest paths in a weighted positive graph.
+ *  The algorithm put the given vertex in the priority queue, priority queue sort the vertices by they tag value.
+    For each vertex we sum the current vertex's tag with his connected edge's weight.
+    Each time we poll vertex with the minimal value in the priority queue,
+    go over all its neighbors, select the neighbor with the minimal value and put it in the priority queue
+    mark all the vertex we passed.
+    If there is a path with a minimal weight we will discover it and select this path
+    each vertex we finished passing out of the priority queue.
+ * Complexity: O(|E|log|V| + |V|).
 
 ## Tests:
 
