@@ -199,7 +199,7 @@ class GraphAlgo(GraphAlgoInterface):
         plt.title("DiGraph")
         plt.show()
 
-    # ======HELPFUL FUNCTIONS====== #
+    # ======Utility Functions====== #
 
     def clear(self):
         """
